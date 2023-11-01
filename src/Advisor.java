@@ -1,25 +1,58 @@
-public class Advisor extends People {
+    public class Advisor extends People {
     private String advisorTitle;
     private double salary;
     private Date hireDate;
     private Student[] advisees;
 
-    public Advisor(String firstName, String middleName, String lastName, String academicId, String phoneNum, String email, String address) {
-        super(firstName, middleName, lastName, academicId, phoneNum, email, address);
+        public Advisor(String firstName, String middleName, String lastName, String academicId, String phoneNum, String email, String address, String advisorTitle, double salary, Date hireDate, Student[] advisees) {
+            super(firstName, middleName, lastName, academicId, phoneNum, email, address);
 
-        this.advisorTitle = advisorTitle;
-        this.salary = salary;
-        this.hireDate = hireDate;
-        this.advisees = advisees;
-    }
+            this.advisorTitle = advisorTitle;
+            this.salary = salary;
+            this.hireDate = hireDate;
+            this.advisees = advisees;
+        }
 
-    @Override
-    public void Payment() {
-        System.out.println("Advisor's annual salary: $" + salary);
+
+        public String getAdvisorTitle() {
+            return advisorTitle;
+        }
+
+        public void setAdvisorTitle(String advisorTitle) {
+            this.advisorTitle = advisorTitle;
+        }
+
+        public double getSalary() {
+            return salary;
+        }
+
+        public void setSalary(double salary) {
+            this.salary = salary;
+        }
+
+        public Date getHireDate() {
+            return hireDate;
+        }
+
+        public void setHireDate(Date hireDate) {
+            this.hireDate = hireDate;
+        }
+
+        public Student[] getAdvisees() {
+            return advisees;
+        }
+
+        public void setAdvisees(Student[] advisees) {
+            this.advisees = advisees;
+        }
+
+        @Override
+    public double Payment() {
+        return getSalary();
     }
 
     @Override
     public void display() {
-
+        System.out.println("this is a test display of advisor");
     }
 }
