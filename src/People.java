@@ -3,18 +3,18 @@ public abstract class People implements Payable{
     private String middleName;
     private String lastName;
     private String academicId;
-    private String phoneNum;
-    private String email;
-    private String address;
+    private Phone phoneNum;
+    private Email email;
+    private Address address;
 
-    public People(String firstName, String middleName, String lastName, String academicId, String phoneNum, String email, String address) {
-        this.firstName = firstName;
-        this.middleName = middleName;
-        this.lastName = lastName;
-        this.academicId = academicId;
-        this.phoneNum = phoneNum;
-        this.email = email;
-        this.address = address;
+    public People(String fN, String mN, String lN, String id, Phone pN, Email e, Address a) {
+        this.firstName = fN;
+        this.middleName = mN;
+        this.lastName = lN;
+        this.academicId = id;
+        this.phoneNum = pN;
+        this.email = e;
+        this.address = a;
     }
 
     public String getAcademicId() {
@@ -25,19 +25,19 @@ public abstract class People implements Payable{
         this.academicId = academicId;
     }
 
-    public String getAddress() {
+    public Address getAddress() {
         return address;
     }
 
-    public void setAddress(String address) {
+    public void setAddress(Address address) {
         this.address = address;
     }
 
-    public String getEmail() {
+    public Email getEmail() {
         return email;
     }
 
-    public void setEmail(String email) {
+    public void setEmail(Email email) {
         this.email = email;
     }
 
@@ -65,11 +65,11 @@ public abstract class People implements Payable{
         this.middleName = middleName;
     }
 
-    public String getPhoneNum() {
+    public Phone getPhoneNum() {
         return phoneNum;
     }
 
-    public void setPhoneNum(String phoneNum) {
+    public void setPhoneNum(Phone phoneNum) {
         this.phoneNum = phoneNum;
     }
 

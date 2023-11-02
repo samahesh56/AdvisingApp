@@ -4,8 +4,9 @@
     private Date hireDate;
     private Student[] advisees;
 
-        public Advisor(String firstName, String middleName, String lastName, String academicId, String phoneNum, String email, String address, String advisorTitle, double salary, Date hireDate, Student[] advisees) {
-            super(firstName, middleName, lastName, academicId, phoneNum, email, address);
+        public Advisor(String fN, String mN, String lN, String id, Phone phoneNum, Email email, Address address,
+                       String advisorTitle, double salary, Date hireDate, Student[] advisees) {
+            super(fN, mN, lN, id, phoneNum, email, address);
 
             this.advisorTitle = advisorTitle;
             this.salary = salary;

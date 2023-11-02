@@ -6,7 +6,7 @@ public class Course {
     public Course(String courseNumber, double numCredits, double pricePerCredit) {
         this.courseNum = courseNumber;
         this.numCredits = numCredits;
-        pricePerCredit = 500.0;
+        this.pricePerCredit = pricePerCredit;
     }
 
     public void setCourseNumber(String courseNumber) {
