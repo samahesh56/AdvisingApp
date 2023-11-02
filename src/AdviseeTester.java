@@ -50,18 +50,18 @@ public class AdviseeTester {
 
         // Advisor arrays (3)
         Advisor[] advisors = new Advisor[3];
-        advisors[0] = new Advisor("John", "Doe", "Professor", "xmt5028", phone7, email7, address7, "Professor", 75000.0, hireDate1, new Student[2]);
-        advisors[1] = new Advisor("Jane", "Smith", "Associate Professor", "ysk3015", phone8, email8, address8, "Associate Professor", 60000.0, hireDate2, new Student[2]);
-        advisors[2] = new Advisor("Robert", "Johnson", "Assistant Professor", "zlw4052", phone9, email9, address9, "Assistant Professor", 55000.0, hireDate3, new Student[2]);
+        advisors[0] = new Advisor("John", "James", "Doe", "xmt5028", phone7, email7, address7, "Professor", 75000.0, hireDate1, new Student[2]);
+        advisors[1] = new Advisor("Jane", "William", "Smith", "ysk3015", phone8, email8, address8, "Associate Professor", 60000.0, hireDate2, new Student[2]);
+        advisors[2] = new Advisor("Robert", "Robert", "Johnson", "zlw4052", phone9, email9, address9, "Assistant Professor", 55000.0, hireDate3, new Student[2]);
 
         // Student arrays (6, 2 per advisor)
         Student[] students = new Student[6];
-        students[0] = new Student("Alice", "Doe", "Computer Science", "xsa7012", phone1, email1, address1, "Computer Science", 8000.0, new Date(2023, 9, 1), new ArrayList<Course>());
-        students[1] = new Student("Bob", "Smith", "Engineering", "zmb8245", phone2, email2, address2, "Engineering", 9000.0, new Date(2023, 9, 1), new ArrayList<Course>());
-        students[2] = new Student("Charlie", "Johnson", "Mathematics", "xct9421", phone3, email3, address3, "Mathematics", 7500.0, new Date(2023, 9, 1), new ArrayList<Course>());
-        students[3] = new Student("David", "Lee", "Biology", "xdl7069", phone4, email4, address4, "Biology", 8500.0, new Date(2023, 9, 1), new ArrayList<Course>());
-        students[4] = new Student("Eve", "Brown", "Physics", "xee1092", phone5, email5, address5, "Physics", 8200.0, new Date(2023, 9, 1), new ArrayList<Course>());
-        students[5] = new Student("Frank", "Clark", "Chemistry", "xfr5527", phone6, email6, address6, "Chemistry", 7800.0, new Date(2023, 9, 1), new ArrayList<Course>());
+        students[0] = new Student("Alice", "David", "Doe", "xsa7012", phone1, email1, address1, "Computer Science", 8000.0, new Date(2023, 9, 1), new ArrayList<Course>());
+        students[1] = new Student("Bob", "Peter", "Smith", "zmb8245", phone2, email2, address2, "Engineering", 9000.0, new Date(2023, 9, 1), new ArrayList<Course>());
+        students[2] = new Student("Charlie", "Noah", "Johnson", "xct9421", phone3, email3, address3, "Mathematics", 7500.0, new Date(2023, 9, 1), new ArrayList<Course>());
+        students[3] = new Student("David", "Luke", "Lee", "xdl7069", phone4, email4, address4, "Biology", 8500.0, new Date(2023, 9, 1), new ArrayList<Course>());
+        students[4] = new Student("Eve", "Myles", "Brown", "xee1092", phone5, email5, address5, "Physics", 8200.0, new Date(2023, 9, 1), new ArrayList<Course>());
+        students[5] = new Student("Frank", "Gabe", "Clark", "xfr5527", phone6, email6, address6, "Chemistry", 7800.0, new Date(2023, 9, 1), new ArrayList<Course>());
 
         //uses Set method to assign 2 students to 1 advisor
         advisors[0].setAdvisees(new Student[]{students[0], students[1]});

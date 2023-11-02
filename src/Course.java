@@ -34,11 +34,10 @@ public class Course {
     }
 
     // course info
-    public void displayCourseInfo() {
-        System.out.println("Course Information:");
-        System.out.println("Course Number: " + courseNum);
-        System.out.println("Number of Credits: " + numCredits);
-        System.out.println("Price per Credit: $" + pricePerCredit);
+    public String toString() {
+        return "Course Number: " + courseNum + "\n" +
+                "Number of Credits: " + numCredits + "\n" +
+                "Price per Credit: $" + pricePerCredit;
     }
 
 

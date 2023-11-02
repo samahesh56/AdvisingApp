@@ -56,6 +56,16 @@ public class Student extends People {
 
     @Override
     public String display() { //change this
-        return "This is a test display of student";
+        return String.format("Student:\n" +
+                        "Name: %s %s %s\n" +
+                        "id: %s\n" +
+                        "Phone: %s\n" +
+                        "Email: %s\n" +
+                        "Address: %s\n" +
+                        "Major: %s\n" +
+                        "TuitionPerSem: $%.2f\n" +
+                        "Admit Date: %s\n" +
+                        "Course List: \n%s\n", getFirstName(), getMiddleName(), getLastName(), getAcademicId(), getPhoneNum(),
+                getEmail(), getAddress(), getMajor(), getTuitionPerSem(), getAdmitDate(), getCourseList());
     }
 }
