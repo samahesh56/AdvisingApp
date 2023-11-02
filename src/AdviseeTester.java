@@ -3,9 +3,9 @@ import java.util.ArrayList;
 public class AdviseeTester {
     public static void main(String[] args) {
         // Hire date objects
-        Date hireDate1 = new Date(2023, 10, 15);
-        Date hireDate2 = new Date(2023, 9, 1);
-        Date hireDate3 = new Date(2022, 8, 5);
+        Date hireDate1 = new Date(15, 10, 2023);
+        Date hireDate2 = new Date(1, 9, 2023);
+        Date hireDate3 = new Date(5, 8, 2022);
 
         // Phone
         Phone phone1 = new Phone("Apple", "iPhone 7 plus", "555-555-5555");
@@ -90,13 +90,11 @@ public class AdviseeTester {
 
         // Display information
         for (Advisor advisor : advisors) {
-            advisor.display();
-            System.out.println();
+            System.out.println(advisor.display());
         }
 
         for (Student student : students) {
-            student.display();
-            System.out.println();
+            System.out.println(student.display());
         }
     }
 }

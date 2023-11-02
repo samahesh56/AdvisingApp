@@ -55,7 +55,7 @@ public class Student extends People {
     }
 
     @Override
-    public void display() { //change this
-        System.out.println("This is a test display of student");
+    public String display() { //change this
+        return "This is a test display of student";
     }
 }

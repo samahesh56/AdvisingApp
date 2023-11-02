@@ -79,5 +79,5 @@ public abstract class People implements Payable{
         return 0;
     }
 
-    public abstract void display();
+    public abstract String display();
 }

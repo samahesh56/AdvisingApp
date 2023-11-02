@@ -53,7 +53,22 @@
     }
 
     @Override
-    public void display() {
-        System.out.println("this is a test display of advisor");
+    public String display() {
+        String adviseesStr = "";
+        for (int i = 0; i < this.advisees.length; i++) {
+            adviseesStr += this.advisees[i].display() + "\n";
+        }
+
+        return String.format("Advisor:\n" +
+                        "Name: %s %s %s\n" +
+                        "id: %s\n" +
+                        "Phone: %s\n" +
+                        "Email: %s\n" +
+                        "Address: %s\n" +
+                        "Title: %s\n" +
+                        "Salary: $%.2f\n" +
+                        "Hired Date: %s\n" +
+                        "Advisees: \n%s\n", getFirstName(), getMiddleName(), getLastName(), getAcademicId(), getPhoneNum(),
+                getEmail(), getAddress(), getAdvisorTitle(), getSalary(), getHireDate(), adviseesStr);
     }
 }
