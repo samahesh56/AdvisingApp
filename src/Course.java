@@ -34,10 +34,10 @@ public class Course {
     }
 
     // course info
-    public String toString() {
+    public String displayCourseInfo() {
         return "Course Number: " + courseNum + "\n" +
                 "Number of Credits: " + numCredits + "\n" +
-                "Price per Credit: $" + pricePerCredit;
+                "Price per Credit: $" + pricePerCredit + "\n";
     }
 
 

@@ -55,7 +55,14 @@ public class Student extends People {
     }
 
     @Override
-    public String display() { //change this
+    public String display() {
+        String courseListString = "";
+        for (Course course : getCourseList()) {
+            courseListString += "Course Number: " + course.getCourseNumber() + "\n";
+            courseListString += "Number of Credits: " + course.getNumCredits() + "\n";
+            courseListString += "Price per Credit: $" + course.getPricePerCredit() + "\n\n";
+        }
+
         return String.format("Student:\n" +
                         "Name: %s %s %s\n" +
                         "id: %s\n" +
@@ -66,6 +73,6 @@ public class Student extends People {
                         "TuitionPerSem: $%.2f\n" +
                         "Admit Date: %s\n" +
                         "Course List: \n%s\n", getFirstName(), getMiddleName(), getLastName(), getAcademicId(), getPhoneNum(),
-                getEmail(), getAddress(), getMajor(), getTuitionPerSem(), getAdmitDate(), getCourseList());
+                getEmail(), getAddress(), getMajor(), getTuitionPerSem(), getAdmitDate(), courseListString);
     }
 }
