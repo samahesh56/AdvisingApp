@@ -8,6 +8,8 @@
  **********************************************************/
 
 import java.util.ArrayList;
+import java.util.Scanner;
+
 
 public class AdviseeTester {
     public static void main(String[] args) {
@@ -38,7 +40,6 @@ public class AdviseeTester {
         Email email8 = new Email("Academic", "janesmith@psu.edu");
         Email email9 = new Email("Academic", "robertjohnson@psu.edu");
 
-
         // Address
         Address address1 = new Address("972 Timothy Mission", "Antoineport", "NM", "62149");
         Address address2 = new Address("58060 Mohr Curve", "Schowaltershire", "MT", "60849");
@@ -49,8 +50,6 @@ public class AdviseeTester {
         Address address7 = new Address("9367 Morissette Cove", "Patview", "CO", "47224");
         Address address8 = new Address("6081 Champlin Glens", "Lake Byron", "IN", "69474");
         Address address9 = new Address("392 Roberto Club", "Rockyport", "MN", "67300");
-
-
 
         // Course objects
         Course course1 = new Course("CMPSC132", 3, 500.0);
@@ -97,7 +96,7 @@ public class AdviseeTester {
         students[5].getCourseList().add(course1);
         students[5].getCourseList().add(course3);
 
-        // Display information
+        /* Display information
         for (Advisor advisor : advisors) {
             System.out.println(advisor.display());
         }
@@ -105,6 +104,154 @@ public class AdviseeTester {
         for (Student student : students) {
             System.out.println(student.display());
         }
+         */
+
+        ArrayList<Advisor> advisorsList = new ArrayList<>();
+        Scanner scanner = new Scanner(System.in);
+
+        while (true) {
+            System.out.println("Advisor Menu:");
+            System.out.println("a. Add an advisor");
+            System.out.println("b. Edit an advisor");
+            System.out.println("c. Delete an advisor");
+            System.out.println("d. Display an advisor's information");
+            System.out.println("e. Exit");
+            System.out.print("Enter your choice: ");
+
+            String choice = scanner.next();
+
+            switch (choice) {
+                case "a":
+                    // Add an advisor
+                    Advisor newAdvisor = addAdvisor();
+                    advisorsList.add(newAdvisor);
+                    break;
+                case "b":
+                    // Edit an advisor
+                    editAdvisor(advisorsList);
+                    break;
+                case "c":
+                    // Delete an advisor
+                    deleteAdvisor(advisorsList);
+                    break;
+                case "d":
+                    // Display an advisor's information
+                    displayAdvisor(advisorsList);
+                    break;
+                case "e":
+                    // Exit the application
+                    System.out.println("Exiting the application.");
+                    System.exit(0);
+                    break;
+                default:
+                    System.out.println("Invalid choice. Please try again.");
+            }
+        }
+    }
+
+    private static void displayAdvisor(ArrayList<Advisor> advisorsList) {
+    }
+
+    private static void deleteAdvisor(ArrayList<Advisor> advisorsList) {
+    }
+
+    private static void editAdvisor(ArrayList<Advisor> advisorsList) {
+    }
+
+    private static Advisor addAdvisor() {
+        Scanner scanner = new Scanner(System.in);
+
+        // Basic Advisor Information
+        System.out.println("Enter new advisor's first name: ");
+        String firstName = scanner.next();
+
+        System.out.println("Enter new advisor's middle name: ");
+        String middleName = scanner.next();
+
+        System.out.println("Enter new advisor's last name: ");
+        String lastName = scanner.next();
+
+        System.out.println("Enter new advisor's id (unique, such as xmt5028): ");
+        String id = scanner.next();
+
+        // Advisor Phone Information
+        System.out.println("Enter new advisor's phone brand: ");
+        String brand = scanner.next();
+
+        System.out.println("Enter new advisor's phone model: ");
+        String model = scanner.next();
+
+        System.out.println("Enter new advisor's phone number: ");
+        String number = scanner.next();
+
+        Phone phone = new Phone(brand, model, number);
+
+        // Advisor Email Information
+        System.out.println("Enter new advisor's email type: ");
+        String type = scanner.next();
+
+        System.out.println("Enter new advisor's email address: ");
+        String emailAddress = scanner.next();
+
+        Email email = new Email(type, emailAddress);
+
+        //Advisor Address Information
+        System.out.println("Enter new advisor's street number: ");
+        String streetNo = scanner.next();
+
+        // Consume any remaining newline characters
+        scanner.nextLine();
+
+        System.out.println("Enter new advisor's city: ");
+        String city = scanner.nextLine();
+
+        System.out.println("Enter new advisor's state: ");
+        String state = scanner.nextLine();
+
+        System.out.println("Enter new advisor's zipcode: ");
+        String zipcode = scanner.next();
+
+        Address address = new Address(streetNo, city, state, zipcode);
+
+        System.out.println("Enter new advisor's title: ");
+        String advisorTitle = scanner.next();
+
+        System.out.println("Enter new advisor's annual salary: ");
+        double salary = scanner.nextDouble();
+
+        // Advisor Hire Date Information
+        System.out.println("Enter new advisor's admit day (day of month): ");
+        int day = scanner.nextInt();
+
+        System.out.println("Enter new advisor's admit month (number of month): ");
+        int month = scanner.nextInt();
+
+        System.out.println("Enter new advisor's admit year: ");
+        int year = scanner.nextInt();
+
+        Date date = new Date(day, month, year);
+
+        // Advisee information
+
+        Student[] advisees = new Student[2];
+        /* implement if student information should be added (instead of empty)
+        for (int i = 0; i < 2; i++) {
+            System.out.println("Enter Student Information for Advisee " + (i + 1) + ":");
+            System.out.print("First Name: ");
+            String studentFirstName = scanner.nextLine();
+            System.out.print("Middle Name: ");
+            String studentMiddleName = scanner.nextLine();
+            System.out.print("Last Name: ");
+            String studentLastName = scanner.nextLine();
+            System.out.print("Academic ID: ");
+            String studentid = scanner.nextLine();
+        */
+
+        // Create the advisor object
+        Advisor newAdvisor = new Advisor(firstName, middleName, lastName, id, phone, email, address, advisorTitle, salary, date, advisees);
+
+        System.out.println("Advisor added successfully.");
+        return newAdvisor;
     }
 }
 

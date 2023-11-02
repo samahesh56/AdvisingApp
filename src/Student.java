@@ -5,6 +5,15 @@ public class Student extends People {
     private double tuitionPerSem;
     private Date admitDate;
     private ArrayList<Course> courseList;
+
+    public Student() {
+        super();
+        this.major = "";
+        this.tuitionPerSem = 500.0;
+        this.admitDate = new Date(0,0,0);
+        this.courseList = new ArrayList<Course>();
+
+    }
     public Student(String fN, String mN, String lN, String id, Phone pN, Email e, Address a, String major,
                    double tuitionPerSem, Date admitDate, ArrayList<Course> courseList) {
         super(fN, mN, lN, id, pN, e, a);
