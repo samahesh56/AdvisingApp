@@ -7,6 +7,7 @@
  * short description: Demonstrates a data management system focused on organizing academic advisor and advisee’s information through OOP  and OOD.
  **********************************************************/
 
+import javax.swing.plaf.basic.BasicInternalFrameTitlePane;
 import java.sql.Array;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -92,21 +93,27 @@ public class AdviseeTester {
         students[0].getCourseList().add(course1);
         students[0].getCourseList().add(course2);
         students[0].getCourseList().add(course3);
+        students[0].Payment();
 
         students[1].getCourseList().add(course2);
         students[1].getCourseList().add(course3);
+        students[1].Payment();
 
         students[2].getCourseList().add(course1);
         students[2].getCourseList().add(course3);
+        students[2].Payment();
 
         students[3].getCourseList().add(course2);
         students[3].getCourseList().add(course3);
+        students[3].Payment();
 
         students[4].getCourseList().add(course1);
         students[4].getCourseList().add(course2);
+        students[4].Payment();
 
         students[5].getCourseList().add(course1);
         students[5].getCourseList().add(course3);
+        students[5].Payment();
 
         /* Display information
         for (Advisor advisor : advisors) {
@@ -473,51 +480,97 @@ public class AdviseeTester {
                         }
                         break;
                     case 9:
-                        // THIS CAN ONLY EDIT EXISTING ADVISEES; IT CANNOT ADD NEW ONES
+                        // edit the list of advisees
+                        boolean adviseeEditing = true;
+                        while (adviseeEditing) {
+                            System.out.println("1. Add advisee");
+                            System.out.println("2. Remove advisee");
+                            System.out.println("3. Edit advisee");
+                            System.out.println("4. Exit submenu");
+                            int option = scanner.nextInt();
+                            scanner.nextLine();
 
-                        System.out.println("Select a student to modify:");
-                        for (int i = 0; i < selectedAdvisor.getAdvisees().size(); i++) {
-                            System.out.println((i + 1) + ". " + selectedAdvisor.getAdvisees().get(i).getFirstName() + " " + selectedAdvisor.getAdvisees().get(i).getLastName());
-                        }
-                        System.out.println((selectedAdvisor.getAdvisees().size() + 1) + ". Exit Submenu");
+                            if (option == 1) {
+                                // add advisee
+                                /*
+                                  sub menu
+                                  create new advisee
+                                  add existing advisee
+                                 */
+                            }
+                            else if (option == 2) {
+                                // remove advisee
+                                /*
+                                  sub menu
+                                  list of advisees for this advisor
+                                  if there are no advisees, print message
+                                 */
+                            } else if (option == 3) {
+                                System.out.println("Select a student to modify:");
+                                for (int i = 0; i < selectedAdvisor.getAdvisees().size(); i++) {
+                                    System.out.println((i + 1) + ". " + selectedAdvisor.getAdvisees().get(i).getFirstName()
+                                            + " " + selectedAdvisor.getAdvisees().get(i).getLastName());
+                                }
+                                System.out.println((selectedAdvisor.getAdvisees().size() + 1) + ". Exit Submenu");
 
-                        int studentIndex = scanner.nextInt();
-                        scanner.nextLine();
-
-                        if (studentIndex >= 0 && studentIndex < selectedAdvisor.getAdvisees().size()){
-                            Student selectedStudent = selectedAdvisor.getAdvisees().get(studentIndex-1);
-
-                            boolean studentEditing = true;
-                            while (studentEditing) {
-                                System.out.println("Select which student attribute to modify:");
-                                System.out.println("1. Major");
-                                System.out.println("2. Tuition Per Semester");
-                                System.out.println("3. Admit Date");
-                                System.out.println("4. Course Information");
-                                System.out.println("5. Exit Advisee Editor");
-
-                                int studentChoice = scanner.nextInt();
+                                int studentIndex = scanner.nextInt();
                                 scanner.nextLine();
 
-                                if (studentChoice == 1) {
-                                    System.out.println("Enter the new major: ");
-                                    String major = scanner.nextLine();
-                                    selectedStudent.setMajor(major);
-                                } else if (studentChoice == 2) {
-                                    System.out.println("Enter the new tuition per semester: ");
-                                    double tuition = scanner.nextDouble();
-                                    selectedStudent.setTuitionPerSem(tuition);
-                                } else if (studentChoice == 3) {
-                                    // ADD SUBMENU FOR DATE MODIFICATION
-                                } else if (studentChoice == 4) {
-                                    // ADD SUBMENU FOR COURSE MODIFICATION
-                                } else if (studentChoice == 5) {
-                                    studentEditing = false; // Exit the submenu
-                                }else {
-                                    System.out.println("Invalid choice. Please enter a valid option.");
+                                if (studentIndex >= 0 && studentIndex < selectedAdvisor.getAdvisees().size()){
+                                    Student selectedStudent = selectedAdvisor.getAdvisees().get(studentIndex-1);
+
+                                    boolean studentEditing = true;
+                                    while (studentEditing) {
+                                        System.out.println("Select which student attribute to modify:");
+                                        System.out.println("1. Major");
+                                        System.out.println("2. Tuition Per Semester");
+                                        System.out.println("3. Admit Date");
+                                        System.out.println("4. Course Information");
+                                        System.out.println("5. Exit Advisee Editor");
+
+                                        int studentChoice = scanner.nextInt();
+                                        scanner.nextLine();
+
+                                        if (studentChoice == 1) {
+                                            System.out.println("Enter the new major: ");
+                                            String major = scanner.nextLine();
+                                            selectedStudent.setMajor(major);
+                                        } else if (studentChoice == 2) {
+                                            System.out.println("Enter the new tuition per semester: ");
+                                            double tuition = scanner.nextDouble();
+                                            scanner.nextLine();
+                                            selectedStudent.setTuitionPerSem(tuition);
+                                        } else if (studentChoice == 3) {
+                                            System.out.print("Enter day: ");
+                                            int newDay = scanner.nextInt();
+                                            System.out.print("Enter month: ");
+                                            int newMonth = scanner.nextInt();
+                                            System.out.print("Enter Year: ");
+                                            int newYear = scanner.nextInt();
+
+                                            scanner.nextLine();
+
+                                            selectedStudent.setAdmitDate(new Date(newDay, newMonth, newYear));
+                                        } else if (studentChoice == 4) {
+                                            // ADD SUBMENU FOR COURSE MODIFICATION
+                                            // REMEMBER TO CALL PAYMENT AFTER COURSE MODIFICATION
+
+                                        } else if (studentChoice == 5) {
+                                            studentEditing = false; // Exit the submenu
+                                        }else {
+                                            System.out.println("Invalid choice. Please enter a valid option.");
+                                        }
+                                    }
                                 }
                             }
+                            else if (option == 4) {
+                                adviseeEditing = false;
+                            }
+                            else {
+                                System.out.println("Invalid choice. Please enter a valid option.");
+                            }
                         }
+
                         break;
                     case 10:
                         editing = false; // Exit the editing loop
@@ -581,287 +634,3 @@ public class AdviseeTester {
 }
 
 //benchmark data
-/*
-Advisor:
-Name: John James Doe
-id: xmt5028
-Phone: Brand: Nokia | Model: Blackberry | Number: 111-111-1111
-Email: Email{type='Academic', address='johndoe@psu.edu'}
-Address: 9367 Morissette Cove Patview, CO 47224
-Title: Professor
-Salary: $75000.00
-Hired Date: 15/10/2023
-Advisees:
-Student:
-Name: Alice David Doe
-id: xsa7012
-Phone: Brand: Apple | Model: iPhone 7 plus | Number: 555-555-5555
-Email: Email{type='Academic', address='alicedoe@psu.edu'}
-Address: 972 Timothy Mission Antoineport, NM 62149
-Major: Computer Science
-TuitionPerSem: $8000.00
-Admit Date: 2023/9/1
-Course List:
-Course Number: CMPSC132
-Number of Credits: 3.0
-Price per Credit: $500.0
-
-Course Number: MATH220
-Number of Credits: 4.0
-Price per Credit: $500.0
-
-Course Number: PHYS212
-Number of Credits: 4.0
-Price per Credit: $500.0
-
-
-
-Student:
-Name: Bob Peter Smith
-id: zmb8245
-Phone: Brand: Samsung | Model: Galaxy S22 | Number: 666-666-6666
-Email: Email{type='Academic', address='bobsmith@psu.edu'}
-Address: 58060 Mohr Curve Schowaltershire, MT 60849
-Major: Engineering
-TuitionPerSem: $9000.00
-Admit Date: 2023/9/1
-Course List:
-Course Number: MATH220
-Number of Credits: 4.0
-Price per Credit: $500.0
-
-Course Number: PHYS212
-Number of Credits: 4.0
-Price per Credit: $500.0
-
-
-
-
-
-Advisor:
-Name: Jane William Smith
-id: ysk3015
-Phone: Brand: Samsung | Model: Galaxy Z Flip | Number: 222-222-2222
-Email: Email{type='Academic', address='janesmith@psu.edu'}
-Address: 6081 Champlin Glens Lake Byron, IN 69474
-Title: Associate Professor
-Salary: $60000.00
-Hired Date: 1/9/2023
-Advisees:
-Student:
-Name: Charlie Noah Johnson
-id: xct9421
-Phone: Brand: Google | Model: Pixel 7 | Number: 777-777-7777
-Email: Email{type='Academic', address='charliejohnson@psu.edu'}
-Address: 13766 Larkin Ford Leanorafurt, MI 99988
-Major: Mathematics
-TuitionPerSem: $7500.00
-Admit Date: 2023/9/1
-Course List:
-Course Number: CMPSC132
-Number of Credits: 3.0
-Price per Credit: $500.0
-
-Course Number: PHYS212
-Number of Credits: 4.0
-Price per Credit: $500.0
-
-
-
-Student:
-Name: David Luke Lee
-id: xdl7069
-Phone: Brand: Apple | Model: iPhone 15 pro | Number: 888-888-8888
-Email: Email{type='Academic', address='davidlee@psu.edu'}
-Address: 73348 Rocco Bypass Morarton, NM 90274
-Major: Biology
-TuitionPerSem: $8500.00
-Admit Date: 2023/9/1
-Course List:
-Course Number: MATH220
-Number of Credits: 4.0
-Price per Credit: $500.0
-
-Course Number: PHYS212
-Number of Credits: 4.0
-Price per Credit: $500.0
-
-
-
-
-
-Advisor:
-Name: Robert Robert Johnson
-id: zlw4052
-Phone: Brand: Google | Model: Pixel 6 | Number: 333-333-3333
-Email: Email{type='Academic', address='robertjohnson@psu.edu'}
-Address: 392 Roberto Club Rockyport, MN 67300
-Title: Assistant Professor
-Salary: $55000.00
-Hired Date: 5/8/2022
-Advisees:
-Student:
-Name: Eve Myles Brown
-id: xee1092
-Phone: Brand: Xiaomi | Model: Xiaomi 13 | Number: 999-999-9999
-Email: Email{type='Academic', address='evebrown@psu.edu'}
-Address: 15645 Fanny Expressway Marchelleburgh, NH 38455
-Major: Physics
-TuitionPerSem: $8200.00
-Admit Date: 2023/9/1
-Course List:
-Course Number: CMPSC132
-Number of Credits: 3.0
-Price per Credit: $500.0
-
-Course Number: MATH220
-Number of Credits: 4.0
-Price per Credit: $500.0
-
-
-
-Student:
-Name: Frank Gabe Clark
-id: xfr5527
-Phone: Brand: Huawei | Model: P50 pro | Number: 000-000-0000
-Email: Email{type='Academic', address='frankclark@psu.edu'}
-Address: 394 Gleichner Parkway Wiltonchester, LA 98677
-Major: Chemistry
-TuitionPerSem: $7800.00
-Admit Date: 2023/9/1
-Course List:
-Course Number: CMPSC132
-Number of Credits: 3.0
-Price per Credit: $500.0
-
-Course Number: PHYS212
-Number of Credits: 4.0
-Price per Credit: $500.0
-
-
-
-
-
-Student:
-Name: Alice David Doe
-id: xsa7012
-Phone: Brand: Apple | Model: iPhone 7 plus | Number: 555-555-5555
-Email: Email{type='Academic', address='alicedoe@psu.edu'}
-Address: 972 Timothy Mission Antoineport, NM 62149
-Major: Computer Science
-TuitionPerSem: $8000.00
-Admit Date: 2023/9/1
-Course List:
-Course Number: CMPSC132
-Number of Credits: 3.0
-Price per Credit: $500.0
-
-Course Number: MATH220
-Number of Credits: 4.0
-Price per Credit: $500.0
-
-Course Number: PHYS212
-Number of Credits: 4.0
-Price per Credit: $500.0
-
-
-
-Student:
-Name: Bob Peter Smith
-id: zmb8245
-Phone: Brand: Samsung | Model: Galaxy S22 | Number: 666-666-6666
-Email: Email{type='Academic', address='bobsmith@psu.edu'}
-Address: 58060 Mohr Curve Schowaltershire, MT 60849
-Major: Engineering
-TuitionPerSem: $9000.00
-Admit Date: 2023/9/1
-Course List:
-Course Number: MATH220
-Number of Credits: 4.0
-Price per Credit: $500.0
-
-Course Number: PHYS212
-Number of Credits: 4.0
-Price per Credit: $500.0
-
-
-
-Student:
-Name: Charlie Noah Johnson
-id: xct9421
-Phone: Brand: Google | Model: Pixel 7 | Number: 777-777-7777
-Email: Email{type='Academic', address='charliejohnson@psu.edu'}
-Address: 13766 Larkin Ford Leanorafurt, MI 99988
-Major: Mathematics
-TuitionPerSem: $7500.00
-Admit Date: 2023/9/1
-Course List:
-Course Number: CMPSC132
-Number of Credits: 3.0
-Price per Credit: $500.0
-
-Course Number: PHYS212
-Number of Credits: 4.0
-Price per Credit: $500.0
-
-
-
-Student:
-Name: David Luke Lee
-id: xdl7069
-Phone: Brand: Apple | Model: iPhone 15 pro | Number: 888-888-8888
-Email: Email{type='Academic', address='davidlee@psu.edu'}
-Address: 73348 Rocco Bypass Morarton, NM 90274
-Major: Biology
-TuitionPerSem: $8500.00
-Admit Date: 2023/9/1
-Course List:
-Course Number: MATH220
-Number of Credits: 4.0
-Price per Credit: $500.0
-
-Course Number: PHYS212
-Number of Credits: 4.0
-Price per Credit: $500.0
-
-
-
-Student:
-Name: Eve Myles Brown
-id: xee1092
-Phone: Brand: Xiaomi | Model: Xiaomi 13 | Number: 999-999-9999
-Email: Email{type='Academic', address='evebrown@psu.edu'}
-Address: 15645 Fanny Expressway Marchelleburgh, NH 38455
-Major: Physics
-TuitionPerSem: $8200.00
-Admit Date: 2023/9/1
-Course List:
-Course Number: CMPSC132
-Number of Credits: 3.0
-Price per Credit: $500.0
-
-Course Number: MATH220
-Number of Credits: 4.0
-Price per Credit: $500.0
-
-
-
-Student:
-Name: Frank Gabe Clark
-id: xfr5527
-Phone: Brand: Huawei | Model: P50 pro | Number: 000-000-0000
-Email: Email{type='Academic', address='frankclark@psu.edu'}
-Address: 394 Gleichner Parkway Wiltonchester, LA 98677
-Major: Chemistry
-TuitionPerSem: $7800.00
-Admit Date: 2023/9/1
-Course List:
-Course Number: CMPSC132
-Number of Credits: 3.0
-Price per Credit: $500.0
-
-Course Number: PHYS212
-Number of Credits: 4.0
-Price per Credit: $500.0
-
- */

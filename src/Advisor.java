@@ -44,13 +44,19 @@ public class Advisor extends People {
             return advisees;
         }
 
+        // sets advisees to new ArrayList
         public void setAdvisees(ArrayList<Student> advisees) {
             this.advisees = advisees;
         }
 
+        // adds new advisee to existing ArrayList
+        public void addAdvisee(Student advisee) {
+            this.advisees.add(advisee);
+        }
+
         @Override
-        public double Payment() {
-            return 0;
+        public void Payment() {
+
         }
 
     @Override

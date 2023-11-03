@@ -84,8 +84,8 @@ public abstract class People implements Payable {
     }
 
     @Override
-    public double Payment() {
-        return 0;
+    public void Payment() {
+
     }
 
     public abstract String display();

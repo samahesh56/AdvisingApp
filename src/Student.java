@@ -64,7 +64,7 @@ public class Student extends People {
     }
 
     @Override
-    public double Payment() {
+    public void Payment() {
 
         // calculates payment again
         double payment = 0;
@@ -72,7 +72,6 @@ public class Student extends People {
             payment += courseList.get(i).getNumCredits() * courseList.get(i).getPricePerCredit();
         }
         this.tuitionPerSem = payment;
-        return payment;
     }
 
     @Override
