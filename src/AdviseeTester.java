@@ -10,7 +10,6 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
-
 public class AdviseeTester {
     public static void main(String[] args) {
         // Hire date objects
@@ -391,7 +390,7 @@ public class AdviseeTester {
 
                             if (addressChoice == 1) {
                                 System.out.println("Enter the new street number: ");
-                                String streetNo = scanner.nextLine();
+                                String streetNo = scanner.next();
                                 selectedAdvisor.getAddress().setStreetNo(streetNo);
                             } else if (addressChoice == 2) {
                                 System.out.println("Enter the new city: ");
@@ -536,6 +535,26 @@ public class AdviseeTester {
     }
 
     private static void displayAdvisor(ArrayList<Advisor> advisorsList) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Select which advisor to display:");
+
+        for (int i = 0; i < advisorsList.size(); i++) {
+            Advisor advisor = advisorsList.get(i);
+            System.out.println((i + 1) + ". " + advisor.getFirstName() + " " + advisor.getLastName());
+        }
+
+        int advisorIndex = scanner.nextInt();
+
+        if (advisorIndex >= 0 && advisorIndex < advisorsList.size()) {
+            Advisor selectedAdvisor = advisorsList.get(advisorIndex - 1);
+
+            System.out.println("Advisor Info");
+            System.out.println(selectedAdvisor.display());
+
+        } else {
+            System.out.println("Invalid advisor number. Please select a valid advisor");
+        }
     }
 
 }
