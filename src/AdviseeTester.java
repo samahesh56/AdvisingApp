@@ -106,8 +106,13 @@ public class AdviseeTester {
         }
          */
 
-        ArrayList<Advisor> advisorsList = new ArrayList<>();
+        ArrayList<Advisor> advisorsList = new ArrayList<>(); // initializes new advisorList array to add/delete advisors as needed.
+        // Copy elements from the array to the ArrayList
+        for (Advisor advisor : advisors) {
+            advisorsList.add(advisor);
+        }
         Scanner scanner = new Scanner(System.in);
+
 
         while (true) {
             System.out.println("Advisor Menu:");
@@ -141,7 +146,7 @@ public class AdviseeTester {
                 case "e":
                     // Exit the application
                     System.out.println("Exiting the application.");
-                    System.exit(0);
+                    System.exit(0); //ends the program
                     break;
                 default:
                     System.out.println("Invalid choice. Please try again.");
@@ -149,15 +154,7 @@ public class AdviseeTester {
         }
     }
 
-    private static void displayAdvisor(ArrayList<Advisor> advisorsList) {
-    }
-
-    private static void deleteAdvisor(ArrayList<Advisor> advisorsList) {
-    }
-
-    private static void editAdvisor(ArrayList<Advisor> advisorsList) {
-    }
-
+    // addAdvisor function prompts a new advisor with 2 empty advisees (students)
     private static Advisor addAdvisor() {
         Scanner scanner = new Scanner(System.in);
 
@@ -195,11 +192,11 @@ public class AdviseeTester {
 
         Email email = new Email(type, emailAddress);
 
-        //Advisor Address Information
+        // Advisor Address Information
         System.out.println("Enter new advisor's street number: ");
         String streetNo = scanner.next();
 
-        // Consume any remaining newline characters
+        // Consume any remaining newline characters (fixes input bug)
         scanner.nextLine();
 
         System.out.println("Enter new advisor's city: ");
@@ -233,8 +230,8 @@ public class AdviseeTester {
 
         // Advisee information
 
-        Student[] advisees = new Student[2];
-        /* implement if student information should be added (instead of empty)
+        Student[] advisees = new Student[2]; //creates 2 new empty student objects
+        /* implement if student information should be added here (instead of empty objects)
         for (int i = 0; i < 2; i++) {
             System.out.println("Enter Student Information for Advisee " + (i + 1) + ":");
             System.out.print("First Name: ");
@@ -245,6 +242,7 @@ public class AdviseeTester {
             String studentLastName = scanner.nextLine();
             System.out.print("Academic ID: ");
             String studentid = scanner.nextLine();
+            ...
         */
 
         // Create the advisor object
@@ -253,6 +251,293 @@ public class AdviseeTester {
         System.out.println("Advisor added successfully.");
         return newAdvisor;
     }
+
+    private static void editAdvisor(ArrayList<Advisor> advisorsList) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Enter the index of the advisor you want to edit (0 to " + (advisorsList.size() - 1) + "): ");
+        int advisorIndex = scanner.nextInt();
+
+        // iterates through advisor list index to choose advisor.
+        if (advisorIndex >= 0 && advisorIndex < advisorsList.size()) {
+            Advisor selectedAdvisor = advisorsList.get(advisorIndex); //selects advisor of given index from list and assigns to selectedAdvisor
+            boolean editing = true;
+
+            while (editing) {
+                System.out.println("Select an attribute to edit:");
+                System.out.println("1. Name");
+                System.out.println("2. Id");
+                System.out.println("3. Phone");
+                System.out.println("4. Email");
+                System.out.println("5. Address");
+                System.out.println("6. Advisor Title");
+                System.out.println("7. Annual Salary");
+                System.out.println("8. Hire Date");
+                System.out.println("9. Advisees");
+                System.out.println("10. Exit Editing Menu");
+
+                int choice = scanner.nextInt();
+                scanner.nextLine(); // Bug fix
+
+                switch (choice) {
+                    case 1:
+                        // Submenu for editing name
+                        boolean nameEditing = true;
+                        while (nameEditing) {
+                            System.out.println("Select which part of the name to edit:");
+                            System.out.println("1. First Name");
+                            System.out.println("2. Middle Name");
+                            System.out.println("3. Last Name");
+                            System.out.println("4. Exit Submenu");
+                            int nameChoice = scanner.nextInt();
+                            scanner.nextLine();
+
+                            if (nameChoice == 1) {
+                                System.out.println("Enter the new first name: ");
+                                String firstName = scanner.nextLine();
+                                selectedAdvisor.setFirstName(firstName);
+                            } else if (nameChoice == 2) {
+                                System.out.println("Enter the new middle name: ");
+                                String middleName = scanner.nextLine();
+                                selectedAdvisor.setMiddleName(middleName);
+                            } else if (nameChoice == 3) {
+                                System.out.println("Enter the new last name: ");
+                                String lastName = scanner.nextLine();
+                                selectedAdvisor.setLastName(lastName);
+                            } else if (nameChoice == 4) {
+                                nameEditing = false; // Exit the submenu
+                            } else {
+                                System.out.println("Invalid choice. Please enter a valid option.");
+                            }
+                        }
+                        break;
+                    case 2:
+                        // ID changing
+                        System.out.println("Enter the new academic ID: ");
+                        String id = scanner.nextLine();
+                        selectedAdvisor.setAcademicId(id);
+                        break;
+                    case 3:
+                        // Submenu for editing phone
+                        boolean phoneEditing = true;
+                        while (phoneEditing) {
+                            System.out.println("Select which part of the phone to edit:");
+                            System.out.println("1. Brand");
+                            System.out.println("2. Model");
+                            System.out.println("3. Number");
+                            System.out.println("4. Exit Submenu");
+                            int phoneChoice = scanner.nextInt();
+                            scanner.nextLine();
+
+                            if (phoneChoice == 1) {
+                                System.out.println("Enter the new phone brand: ");
+                                String brand = scanner.nextLine();
+                                selectedAdvisor.getPhoneNum().setBrand(brand);
+                            } else if (phoneChoice == 2) {
+                                System.out.println("Enter the new phone model: ");
+                                String model = scanner.nextLine();
+                                selectedAdvisor.getPhoneNum().setModel(model);
+                            } else if (phoneChoice == 3) {
+                                System.out.println("Enter the new phone number: ");
+                                String number = scanner.nextLine();
+                                selectedAdvisor.getPhoneNum().setNumber(number);
+                            } else if (phoneChoice == 4) {
+                                phoneEditing = false; // Exit the submenu
+                            } else {
+                                System.out.println("Invalid choice. Please enter a valid option.");
+                            }
+                        }
+                        break;
+
+                    case 4:
+                        // Submenu for editing Email
+                        boolean emailEditing = true;
+                        while (emailEditing) {
+                            System.out.println("Select which part of the email to edit:");
+                            System.out.println("1. Email Type");
+                            System.out.println("2. Email Address");
+                            System.out.println("3. Exit Submenu");
+                            int emailChoice = scanner.nextInt();
+                            scanner.nextLine();
+
+                            if (emailChoice == 1) {
+                                System.out.println("Enter the new email type: ");
+                                String type = scanner.nextLine();
+                                selectedAdvisor.getEmail().setType(type);
+                            } else if (emailChoice == 2) {
+                                System.out.println("Enter the new email address: ");
+                                String address = scanner.nextLine();
+                                selectedAdvisor.getEmail().setAddress(address);
+                            }
+                            else if (emailChoice == 3) {
+                                emailEditing = false; // Exit the submenu
+                            } else {
+                                System.out.println("Invalid choice. Please enter a valid option.");
+                            }
+                        }
+                        break;
+                    case 5:
+                        // Submenu for editing address
+                        boolean addressEditing = true;
+                        while (addressEditing) {
+                            System.out.println("Select which part of the address to edit:");
+                            System.out.println("1. Street Number");
+                            System.out.println("2. City");
+                            System.out.println("3. State");
+                            System.out.println("4. Zipcode");
+                            System.out.println("5. Exit Submenu");
+                            int addressChoice = scanner.nextInt();
+                            scanner.nextLine();
+
+                            if (addressChoice == 1) {
+                                System.out.println("Enter the new street number: ");
+                                String streetNo = scanner.nextLine();
+                                selectedAdvisor.getAddress().setStreetNo(streetNo);
+                            } else if (addressChoice == 2) {
+                                System.out.println("Enter the new city: ");
+                                String city = scanner.nextLine();
+                                selectedAdvisor.getAddress().setCity(city);
+                            } else if (addressChoice == 3) {
+                                System.out.println("Enter the new state: ");
+                                String state = scanner.nextLine();
+                                selectedAdvisor.getAddress().setState(state);
+                            } else if (addressChoice == 4) {
+                                System.out.println("Enter the new zipcode: ");
+                                String zipcode = scanner.nextLine();
+                                selectedAdvisor.getAddress().setZipcode(zipcode);
+                            } else if (addressChoice == 5) {
+                                addressEditing = false; // Exit the submenu
+                            } else {
+                                System.out.println("Invalid choice. Please enter a valid option.");
+                            }
+                        }
+                        break;
+                    case 6:
+                        // title changing
+                        System.out.println("Enter the new advisor title: ");
+                        String title = scanner.nextLine();
+                        selectedAdvisor.setAdvisorTitle(title);
+                        break;
+                    case 7:
+                        // title changing
+                        System.out.println("Enter the new annual salary: ");
+                        double salary = scanner.nextDouble();
+                        selectedAdvisor.setSalary(salary);
+                        break;
+                    case 8:
+                        // Submenu for editing hire Date
+                        boolean dateEditing = true;
+                        while (dateEditing) {
+                            System.out.println("Select which part of the admit date to edit:");
+                            System.out.println("1. Day");
+                            System.out.println("2. Month");
+                            System.out.println("3. Year");
+                            System.out.println("4. Exit Submenu");
+                            int dateChoice = scanner.nextInt();
+                            scanner.nextLine();
+
+                            if (dateChoice == 1) {
+                                System.out.println("Enter the new phone day: ");
+                                int day = scanner.nextInt();
+                                selectedAdvisor.getHireDate().setDay(day);
+                            } else if (dateChoice == 2) {
+                                System.out.println("Enter the new phone model: ");
+                                int month = scanner.nextInt();
+                                selectedAdvisor.getHireDate().setMonth(month);
+                            } else if (dateChoice == 3) {
+                                System.out.println("Enter the new phone number: ");
+                                int year = scanner.nextInt();
+                                selectedAdvisor.getHireDate().setYear(year);
+                            } else if (dateChoice == 4) {
+                                dateEditing = false; // Exit the submenu
+                            } else {
+                                System.out.println("Invalid choice. Please enter a valid option.");
+                            }
+                        }
+                        break;
+                    case 9:
+                        System.out.println("Select a student to modify:");
+                        for (int i = 0; i < selectedAdvisor.getAdvisees().length; i++) {
+                            System.out.println((i + 1) + ". " + selectedAdvisor.getAdvisees()[i].getFirstName() + " " + selectedAdvisor.getAdvisees()[i].getLastName());
+                        }
+                        System.out.println((selectedAdvisor.getAdvisees().length + 1) + ". Exit Submenu");
+
+                        int studentIndex = scanner.nextInt();
+                        scanner.nextLine();
+
+                        if (studentIndex >= 0 && studentIndex < selectedAdvisor.getAdvisees().length){
+                            Student selectedStudent = selectedAdvisor.getAdvisees()[studentIndex - 1];
+
+                            boolean studentEditing = true;
+                            while (studentEditing) {
+                                System.out.println("Select which student attribute to modify:");
+                                System.out.println("1. Major");
+                                System.out.println("2. Tuition Per Semester");
+                                System.out.println("3. Admit Date");
+                                System.out.println("4. Course Information");
+                                System.out.println("5. Exit Advisee Editor");
+
+                                int studentChoice = scanner.nextInt();
+                                scanner.nextLine();
+
+                                if (studentChoice == 1) {
+                                    System.out.println("Enter the new major: ");
+                                    String major = scanner.nextLine();
+                                    selectedStudent.setMajor(major);
+                                } else if (studentChoice == 2) {
+                                    System.out.println("Enter the new tuition per semester: ");
+                                    double tuition = scanner.nextDouble();
+                                    selectedStudent.setTuitionPerSem(tuition);
+                                } else if (studentChoice == 3) {
+                                    // ADD SUBMENU FOR DATE MODIFICATION
+                                } else if (studentChoice == 4) {
+                                    // ADD SUBMENU FOR COURSE MODIFICATION
+                                } else if (studentChoice == 5) {
+                                    studentEditing = false; // Exit the submenu
+                                }else {
+                                    System.out.println("Invalid choice. Please enter a valid option.");
+                                }
+                            }
+                        }
+                        break;
+                    case 10:
+                        editing = false; // Exit the editing loop
+                        break;
+                    default:
+                        System.out.println("Invalid choice.");
+                        break;
+                }
+            }
+        } else {
+            System.out.println("Invalid advisor index. Please select a valid advisor.");
+        }
+    }
+
+    private static void deleteAdvisor(ArrayList<Advisor> advisorsList) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Enter the index of the advisor you want to delete (0 to " + (advisorsList.size() - 1) + "): ");
+        int advisorIndex = scanner.nextInt();
+
+        // Check if the entered index is within the valid range
+        if (advisorIndex >= 0 && advisorIndex < advisorsList.size()) {
+            Advisor deletedAdvisor = advisorsList.get(advisorIndex);
+
+            // Display the advisor's information before deletion
+            System.out.println("Advisor to be deleted:");
+            System.out.println(deletedAdvisor.getFirstName() + " " + deletedAdvisor.getLastName());
+            advisorsList.remove(advisorIndex); // Remove the advisor from the list
+            System.out.println("Advisor deleted successfully.\n");
+
+        } else {
+            System.out.println("Invalid advisor index. Please select a valid advisor.");
+        }
+
+    }
+
+    private static void displayAdvisor(ArrayList<Advisor> advisorsList) {
+    }
+
 }
 
 //benchmark data
