@@ -95,22 +95,27 @@ public class AdviseeTester {
         students[0].getCourseList().add(course3);
         students[0].Payment();
 
+        students[1].getCourseList().add(course1);
         students[1].getCourseList().add(course2);
         students[1].getCourseList().add(course3);
         students[1].Payment();
 
         students[2].getCourseList().add(course1);
+        students[2].getCourseList().add(course1);
         students[2].getCourseList().add(course3);
         students[2].Payment();
 
+        students[3].getCourseList().add(course1);
         students[3].getCourseList().add(course2);
         students[3].getCourseList().add(course3);
         students[3].Payment();
 
         students[4].getCourseList().add(course1);
+        students[4].getCourseList().add(course1);
         students[4].getCourseList().add(course2);
         students[4].Payment();
 
+        students[5].getCourseList().add(course1);
         students[5].getCourseList().add(course1);
         students[5].getCourseList().add(course3);
         students[5].Payment();
@@ -147,7 +152,7 @@ public class AdviseeTester {
             switch (choice) {
                 case "a":
                     // Add an advisor
-                    advisorsList = addAdvisor(advisorsList);
+                    addAdvisor(advisorsList);
                     break;
                 case "b":
                     // Edit an advisor
@@ -173,113 +178,24 @@ public class AdviseeTester {
     }
 
     // addAdvisor function prompts a new advisor with 2 empty advisees (students)
-    private static ArrayList<Advisor> addAdvisor(ArrayList<Advisor> advisorslist) {
-        ArrayList<Advisor> newAdvisorsList = new ArrayList<>();
-        for (int i = 0; i < advisorslist.size(); i++) {
-            newAdvisorsList.add(advisorslist.get(i));
-        }
-
-        Scanner scanner = new Scanner(System.in);
-
-        // Basic Advisor Information
-        System.out.println("Enter new advisor's first name: ");
-        String firstName = scanner.nextLine();
-
-        System.out.println("Enter new advisor's middle name: ");
-        String middleName = scanner.nextLine();
-
-        System.out.println("Enter new advisor's last name: ");
-        String lastName = scanner.nextLine();
-
-        System.out.println("Enter new advisor's id (unique, such as xmt5028): ");
-        String id = scanner.nextLine();
-
-        // Advisor Phone Information
-        System.out.println("Enter new advisor's phone brand: ");
-        String brand = scanner.nextLine();
-
-        System.out.println("Enter new advisor's phone model: ");
-        String model = scanner.nextLine();
-
-        System.out.println("Enter new advisor's phone number: ");
-        String number = scanner.nextLine();
-
-        Phone phone = new Phone(brand, model, number);
-
-        // Advisor Email Information
-        System.out.println("Enter new advisor's email type: ");
-        String type = scanner.nextLine();
-
-        System.out.println("Enter new advisor's email address: ");
-        String emailAddress = scanner.nextLine();
-
-        Email email = new Email(type, emailAddress);
-
-        // Advisor Address Information
-        System.out.println("Enter new advisor's street number: ");
-        String streetNo = scanner.nextLine();
-
-        // Consume any remaining newline characters (fixes input bug)
-
-        System.out.println("Enter new advisor's city: ");
-        String city = scanner.nextLine();
-
-        System.out.println("Enter new advisor's state: ");
-        String state = scanner.nextLine();
-
-        System.out.println("Enter new advisor's zipcode: ");
-        String zipcode = scanner.nextLine();
-
-        Address address = new Address(streetNo, city, state, zipcode);
-
-        System.out.println("Enter new advisor's title: ");
-        String advisorTitle = scanner.nextLine();
-
-        System.out.println("Enter new advisor's annual salary: ");
-        double salary = scanner.nextDouble();
-
-        // Advisor Hire Date Information
-        System.out.println("Enter new advisor's admit day (day of month): ");
-        int day = scanner.nextInt();
-
-        System.out.println("Enter new advisor's admit month (number of month): ");
-        int month = scanner.nextInt();
-
-        System.out.println("Enter new advisor's admit year: ");
-        int year = scanner.nextInt();
-
-        Date date = new Date(day, month, year);
-
-        // Advisee information
-
-        ArrayList<Student> advisees = new ArrayList<Student>(); //creates 2 new empty student objects
-        /* implement if student information should be added here (instead of empty objects)
-        for (int i = 0; i < 2; i++) {
-            System.out.println("Enter Student Information for Advisee " + (i + 1) + ":");
-            System.out.print("First Name: ");
-            String studentFirstName = scanner.nextLine();
-            System.out.print("Middle Name: ");
-            String studentMiddleName = scanner.nextLine();
-            System.out.print("Last Name: ");
-            String studentLastName = scanner.nextLine();
-            System.out.print("Academic ID: ");
-            String studentid = scanner.nextLine();
-            ...
-        */
-
-        // Create the advisor object
-        Advisor newAdvisor = new Advisor(firstName, middleName, lastName, id, phone, email, address, advisorTitle, salary, date, advisees);
-        newAdvisorsList.add(newAdvisor);
-
-        System.out.println("Advisor added successfully.");
-        return newAdvisorsList;
+    public static void addAdvisor(ArrayList<Advisor> advisorsList) {
+        Advisor newAdvisor = new Advisor("", "", "", "", new Phone("", "", ""),
+                new Email("", ""), new Address("","","",""), "", 0.0, new Date(0, 0, 0), new ArrayList<Student>());
+        advisorsList.add(newAdvisor);
+        System.out.println("Advisor succesfully created");
     }
 
     private static void editAdvisor(ArrayList<Advisor> advisorsList) {
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("Enter the index of the advisor you want to edit (0 to " + (advisorsList.size() - 1) + "): ");
-        int advisorIndex = scanner.nextInt();
+        System.out.println("Select which advisor to edit:");
+
+        for (int i = 0; i < advisorsList.size(); i++) {
+            Advisor advisor = advisorsList.get(i);
+            System.out.println((i + 1) + ". " + advisor.getFirstName() + " " + advisor.getLastName());
+        }
+
+        int advisorIndex = scanner.nextInt() - 1;
 
         // iterates through advisor list index to choose advisor.
         if (advisorIndex >= 0 && advisorIndex < advisorsList.size()) {
@@ -588,8 +504,14 @@ public class AdviseeTester {
     private static void deleteAdvisor(ArrayList<Advisor> advisorsList) {
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("Enter the index of the advisor you want to delete (0 to " + (advisorsList.size() - 1) + "): ");
-        int advisorIndex = scanner.nextInt();
+        System.out.println("Select which advisor to delete:");
+
+        for (int i = 0; i < advisorsList.size(); i++) {
+            Advisor advisor = advisorsList.get(i);
+            System.out.println((i + 1) + ". " + advisor.getFirstName() + " " + advisor.getLastName());
+        }
+
+        int advisorIndex = scanner.nextInt() - 1;
 
         // Check if the entered index is within the valid range
         if (advisorIndex >= 0 && advisorIndex < advisorsList.size()) {

@@ -5,12 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1901daef-d9ec-49f5-ba5a-2f58693542f9" name="Changes" comment="Initial commit 1">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/production/AdvisingApp/AdviseeTester.class" beforeDir="false" afterPath="$PROJECT_DIR$/production/AdvisingApp/AdviseeTester.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/production/AdvisingApp/Advisor.class" beforeDir="false" afterPath="$PROJECT_DIR$/production/AdvisingApp/Advisor.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/production/AdvisingApp/Course.class" beforeDir="false" afterPath="$PROJECT_DIR$/production/AdvisingApp/Course.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/production/AdvisingApp/Date.class" beforeDir="false" afterPath="$PROJECT_DIR$/production/AdvisingApp/Date.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/production/AdvisingApp/Payable.class" beforeDir="false" afterPath="$PROJECT_DIR$/production/AdvisingApp/Payable.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/production/AdvisingApp/People.class" beforeDir="false" afterPath="$PROJECT_DIR$/production/AdvisingApp/People.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/production/AdvisingApp/Student.class" beforeDir="false" afterPath="$PROJECT_DIR$/production/AdvisingApp/Student.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/AdviseeTester.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/AdviseeTester.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Advisor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Advisor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Payable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Payable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/People.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/People.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Student.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Student.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Date.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Date.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,15 +45,15 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "version-3",
-    "onboarding.tips.debug.path": "C:/Users/samah/IdeaProjects/AdvisorApp/src/Main.java",
-    "settings.editor.selected.configurable": "org.jetbrains.plugins.github.ui.GithubSettingsConfigurable"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;version-3&quot;,
+    &quot;onboarding.tips.debug.path&quot;: &quot;C:/Users/samah/IdeaProjects/AdvisorApp/src/Main.java&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;org.jetbrains.plugins.github.ui.GithubSettingsConfigurable&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="AdviseeTester" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="AdviseeTester" />
