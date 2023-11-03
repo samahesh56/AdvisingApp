@@ -7,6 +7,7 @@
  * short description: Demonstrates a data management system focused on organizing academic advisor and advisee’s information through OOP  and OOD.
  **********************************************************/
 
+import java.sql.Array;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -57,9 +58,9 @@ public class AdviseeTester {
 
         // Advisor arrays (3)
         Advisor[] advisors = new Advisor[3];
-        advisors[0] = new Advisor("John", "James", "Doe", "xmt5028", phone7, email7, address7, "Professor", 75000.0, hireDate1, new Student[2]);
-        advisors[1] = new Advisor("Jane", "William", "Smith", "ysk3015", phone8, email8, address8, "Associate Professor", 60000.0, hireDate2, new Student[2]);
-        advisors[2] = new Advisor("Robert", "Robert", "Johnson", "zlw4052", phone9, email9, address9, "Assistant Professor", 55000.0, hireDate3, new Student[2]);
+        advisors[0] = new Advisor("John", "James", "Doe", "xmt5028", phone7, email7, address7, "Professor", 75000.0, hireDate1, new ArrayList<Student>());
+        advisors[1] = new Advisor("Jane", "William", "Smith", "ysk3015", phone8, email8, address8, "Associate Professor", 60000.0, hireDate2, new ArrayList<Student>());
+        advisors[2] = new Advisor("Robert", "Robert", "Johnson", "zlw4052", phone9, email9, address9, "Assistant Professor", 55000.0, hireDate3, new ArrayList<Student>());
 
         // Student arrays (6, 2 per advisor)
         Student[] students = new Student[6];
@@ -71,9 +72,21 @@ public class AdviseeTester {
         students[5] = new Student("Frank", "Gabe", "Clark", "xfr5527", phone6, email6, address6, "Chemistry", 7800.0, new Date(2023, 9, 1), new ArrayList<Course>());
 
         //uses Set method to assign 2 students to 1 advisor
-        advisors[0].setAdvisees(new Student[]{students[0], students[1]});
-        advisors[1].setAdvisees(new Student[]{students[2], students[3]});
-        advisors[2].setAdvisees(new Student[]{students[4], students[5]});
+        ArrayList<Student> advisees1 = new ArrayList<>();
+        advisees1.add(students[0]);
+        advisees1.add(students[1]);
+
+        ArrayList<Student> advisees2 = new ArrayList<>();
+        advisees2.add(students[2]);
+        advisees2.add(students[3]);
+
+        ArrayList<Student> advisees3 = new ArrayList<>();
+        advisees3.add(students[4]);
+        advisees3.add(students[5]);
+
+        advisors[0].setAdvisees(advisees1);
+        advisors[1].setAdvisees(advisees2);
+        advisors[2].setAdvisees(advisees3);
 
         // Uses get method, and add implement method to assign courses to students.
         students[0].getCourseList().add(course1);
@@ -127,8 +140,7 @@ public class AdviseeTester {
             switch (choice) {
                 case "a":
                     // Add an advisor
-                    Advisor newAdvisor = addAdvisor();
-                    advisorsList.add(newAdvisor);
+                    advisorsList = addAdvisor(advisorsList);
                     break;
                 case "b":
                     // Edit an advisor
@@ -154,49 +166,53 @@ public class AdviseeTester {
     }
 
     // addAdvisor function prompts a new advisor with 2 empty advisees (students)
-    private static Advisor addAdvisor() {
+    private static ArrayList<Advisor> addAdvisor(ArrayList<Advisor> advisorslist) {
+        ArrayList<Advisor> newAdvisorsList = new ArrayList<>();
+        for (int i = 0; i < advisorslist.size(); i++) {
+            newAdvisorsList.add(advisorslist.get(i));
+        }
+
         Scanner scanner = new Scanner(System.in);
 
         // Basic Advisor Information
         System.out.println("Enter new advisor's first name: ");
-        String firstName = scanner.next();
+        String firstName = scanner.nextLine();
 
         System.out.println("Enter new advisor's middle name: ");
-        String middleName = scanner.next();
+        String middleName = scanner.nextLine();
 
         System.out.println("Enter new advisor's last name: ");
-        String lastName = scanner.next();
+        String lastName = scanner.nextLine();
 
         System.out.println("Enter new advisor's id (unique, such as xmt5028): ");
-        String id = scanner.next();
+        String id = scanner.nextLine();
 
         // Advisor Phone Information
         System.out.println("Enter new advisor's phone brand: ");
-        String brand = scanner.next();
+        String brand = scanner.nextLine();
 
         System.out.println("Enter new advisor's phone model: ");
-        String model = scanner.next();
+        String model = scanner.nextLine();
 
         System.out.println("Enter new advisor's phone number: ");
-        String number = scanner.next();
+        String number = scanner.nextLine();
 
         Phone phone = new Phone(brand, model, number);
 
         // Advisor Email Information
         System.out.println("Enter new advisor's email type: ");
-        String type = scanner.next();
+        String type = scanner.nextLine();
 
         System.out.println("Enter new advisor's email address: ");
-        String emailAddress = scanner.next();
+        String emailAddress = scanner.nextLine();
 
         Email email = new Email(type, emailAddress);
 
         // Advisor Address Information
         System.out.println("Enter new advisor's street number: ");
-        String streetNo = scanner.next();
+        String streetNo = scanner.nextLine();
 
         // Consume any remaining newline characters (fixes input bug)
-        scanner.nextLine();
 
         System.out.println("Enter new advisor's city: ");
         String city = scanner.nextLine();
@@ -205,12 +221,12 @@ public class AdviseeTester {
         String state = scanner.nextLine();
 
         System.out.println("Enter new advisor's zipcode: ");
-        String zipcode = scanner.next();
+        String zipcode = scanner.nextLine();
 
         Address address = new Address(streetNo, city, state, zipcode);
 
         System.out.println("Enter new advisor's title: ");
-        String advisorTitle = scanner.next();
+        String advisorTitle = scanner.nextLine();
 
         System.out.println("Enter new advisor's annual salary: ");
         double salary = scanner.nextDouble();
@@ -229,7 +245,7 @@ public class AdviseeTester {
 
         // Advisee information
 
-        Student[] advisees = new Student[2]; //creates 2 new empty student objects
+        ArrayList<Student> advisees = new ArrayList<Student>(); //creates 2 new empty student objects
         /* implement if student information should be added here (instead of empty objects)
         for (int i = 0; i < 2; i++) {
             System.out.println("Enter Student Information for Advisee " + (i + 1) + ":");
@@ -246,9 +262,10 @@ public class AdviseeTester {
 
         // Create the advisor object
         Advisor newAdvisor = new Advisor(firstName, middleName, lastName, id, phone, email, address, advisorTitle, salary, date, advisees);
+        newAdvisorsList.add(newAdvisor);
 
         System.out.println("Advisor added successfully.");
-        return newAdvisor;
+        return newAdvisorsList;
     }
 
     private static void editAdvisor(ArrayList<Advisor> advisorsList) {
@@ -276,7 +293,8 @@ public class AdviseeTester {
                 System.out.println("10. Exit Editing Menu");
 
                 int choice = scanner.nextInt();
-                scanner.nextLine(); // Bug fix
+                scanner.nextLine();
+
 
                 switch (choice) {
                     case 1:
@@ -455,17 +473,19 @@ public class AdviseeTester {
                         }
                         break;
                     case 9:
+                        // THIS CAN ONLY EDIT EXISTING ADVISEES; IT CANNOT ADD NEW ONES
+
                         System.out.println("Select a student to modify:");
-                        for (int i = 0; i < selectedAdvisor.getAdvisees().length; i++) {
-                            System.out.println((i + 1) + ". " + selectedAdvisor.getAdvisees()[i].getFirstName() + " " + selectedAdvisor.getAdvisees()[i].getLastName());
+                        for (int i = 0; i < selectedAdvisor.getAdvisees().size(); i++) {
+                            System.out.println((i + 1) + ". " + selectedAdvisor.getAdvisees().get(i).getFirstName() + " " + selectedAdvisor.getAdvisees().get(i).getLastName());
                         }
-                        System.out.println((selectedAdvisor.getAdvisees().length + 1) + ". Exit Submenu");
+                        System.out.println((selectedAdvisor.getAdvisees().size() + 1) + ". Exit Submenu");
 
                         int studentIndex = scanner.nextInt();
                         scanner.nextLine();
 
-                        if (studentIndex >= 0 && studentIndex < selectedAdvisor.getAdvisees().length){
-                            Student selectedStudent = selectedAdvisor.getAdvisees()[studentIndex - 1];
+                        if (studentIndex >= 0 && studentIndex < selectedAdvisor.getAdvisees().size()){
+                            Student selectedStudent = selectedAdvisor.getAdvisees().get(studentIndex-1);
 
                             boolean studentEditing = true;
                             while (studentEditing) {
@@ -544,15 +564,16 @@ public class AdviseeTester {
             System.out.println((i + 1) + ". " + advisor.getFirstName() + " " + advisor.getLastName());
         }
 
-        int advisorIndex = scanner.nextInt();
+        int advisorIndex = scanner.nextInt() - 1;
 
         if (advisorIndex >= 0 && advisorIndex < advisorsList.size()) {
-            Advisor selectedAdvisor = advisorsList.get(advisorIndex - 1);
+            Advisor selectedAdvisor = advisorsList.get(advisorIndex);
 
             System.out.println("Advisor Info");
             System.out.println(selectedAdvisor.display());
 
-        } else {
+        }
+        else {
             System.out.println("Invalid advisor number. Please select a valid advisor");
         }
     }

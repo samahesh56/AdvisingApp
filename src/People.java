@@ -1,9 +1,4 @@
-public abstract class People implements Payable{
-    private String fN;
-    private String mN;
-    private String lN;
-    private String id;
-    private Phone pN;
+public abstract class People implements Payable {
     private String firstName;
     private String middleName;
     private String lastName;
@@ -13,10 +8,10 @@ public abstract class People implements Payable{
     private Address address;
 
     public People() {
-        this.fN = "";
-        this.mN = "";
-        this.lN = "";
-        this.id = "";
+        this.firstName = "";
+        this.middleName = "";
+        this.lastName = "";
+        this.academicId = "";
         this.phoneNum = new Phone("", "", ""); // Initialize Phone with empty values
         this.email = new Email("", ""); // Initialize Email with empty values
         this.address = new Address("", "", "", ""); // Initialize Address with empty values
@@ -90,7 +85,6 @@ public abstract class People implements Payable{
 
     @Override
     public double Payment() {
-        System.out.println("Payment");
         return 0;
     }
 

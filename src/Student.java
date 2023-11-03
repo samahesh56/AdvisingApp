@@ -2,14 +2,13 @@ import java.util.ArrayList;
 
 public class Student extends People {
     private String major;
-    private double tuitionPerSem;
     private Date admitDate;
     private ArrayList<Course> courseList;
+    private double tuitionPerSem;
 
     public Student() {
         super();
         this.major = "";
-        this.tuitionPerSem = 500.0;
         this.admitDate = new Date(0,0,0);
         this.courseList = new ArrayList<Course>();
 
@@ -19,9 +18,16 @@ public class Student extends People {
         super(fN, mN, lN, id, pN, e, a);
 
         this.major = major;
-        this.tuitionPerSem = tuitionPerSem;
         this.admitDate = admitDate;
         this.courseList = courseList;
+
+        // calculates payment when constructing the object
+
+        double payment = 0;
+        for (int i = 0; i < courseList.size(); i++) {
+            payment += courseList.get(i).getNumCredits() * courseList.get(i).getPricePerCredit();
+        }
+        this.tuitionPerSem = payment;
     }
 
 
@@ -59,8 +65,14 @@ public class Student extends People {
 
     @Override
     public double Payment() {
-        System.out.println("Payment");
-        return 0; // change this
+
+        // calculates payment again
+        double payment = 0;
+        for (int i = 0; i < courseList.size(); i++) {
+            payment += courseList.get(i).getNumCredits() * courseList.get(i).getPricePerCredit();
+        }
+        this.tuitionPerSem = payment;
+        return payment;
     }
 
     @Override

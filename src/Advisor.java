@@ -1,11 +1,12 @@
-    public class Advisor extends People {
+import java.util.*;
+public class Advisor extends People {
     private String advisorTitle;
-    private double salary;
     private Date hireDate;
-    private Student[] advisees;
+    private ArrayList<Student> advisees;
+    private double salary;
 
         public Advisor(String fN, String mN, String lN, String id, Phone phoneNum, Email email, Address address,
-                       String advisorTitle, double salary, Date hireDate, Student[] advisees) {
+                       String advisorTitle, double salary, Date hireDate, ArrayList<Student> advisees) {
             super(fN, mN, lN, id, phoneNum, email, address);
 
             this.advisorTitle = advisorTitle;
@@ -39,24 +40,24 @@
             this.hireDate = hireDate;
         }
 
-        public Student[] getAdvisees() {
+        public ArrayList<Student> getAdvisees() {
             return advisees;
         }
 
-        public void setAdvisees(Student[] advisees) {
+        public void setAdvisees(ArrayList<Student> advisees) {
             this.advisees = advisees;
         }
 
         @Override
-    public double Payment() {
-        return getSalary();
-    }
+        public double Payment() {
+            return 0;
+        }
 
     @Override
     public String display() {
         String adviseesStr = "";
-        for (int i = 0; i < this.advisees.length; i++) {
-            adviseesStr += this.advisees[i].display() + "\n";
+        for (int i = 0; i < this.advisees.size(); i++) {
+            adviseesStr += this.advisees.get(i).display() + "\n";
         }
 
         return String.format("Advisor:\n" +
