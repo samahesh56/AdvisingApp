@@ -7,17 +7,15 @@
  * short description: Demonstrates a data management system focused on organizing academic advisor and advisee’s information through OOP  and OOD.
  **********************************************************/
 
-import javax.swing.plaf.basic.BasicInternalFrameTitlePane;
-import java.sql.Array;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class AdviseeTester {
     public static void main(String[] args) {
         // Hire date objects
-        Date hireDate1 = new Date(15, 10, 2023);
-        Date hireDate2 = new Date(1, 9, 2023);
-        Date hireDate3 = new Date(5, 8, 2022);
+        Date hireDate1 = new Date(15, 10, 2004);
+        Date hireDate2 = new Date(1, 9, 2009);
+        Date hireDate3 = new Date(5, 8, 2014);
 
         // Phone
         Phone phone1 = new Phone("Apple", "iPhone 7 plus", "555-555-5555");
@@ -59,18 +57,18 @@ public class AdviseeTester {
 
         // Advisor arrays (3)
         Advisor[] advisors = new Advisor[3];
-        advisors[0] = new Advisor("John", "James", "Doe", "xmt5028", phone7, email7, address7, "Professor", 75000.0, hireDate1, new ArrayList<Student>());
-        advisors[1] = new Advisor("Jane", "William", "Smith", "ysk3015", phone8, email8, address8, "Associate Professor", 60000.0, hireDate2, new ArrayList<Student>());
-        advisors[2] = new Advisor("Robert", "Robert", "Johnson", "zlw4052", phone9, email9, address9, "Assistant Professor", 55000.0, hireDate3, new ArrayList<Student>());
+        advisors[0] = new Advisor("John", "James", "Doe", "jjd5028", phone7, email7, address7, "Professor", 75000.0, hireDate1, new ArrayList<Student>());
+        advisors[1] = new Advisor("Jane", "William", "Smith", "jws3015", phone8, email8, address8, "Head Professor", 60000.0, hireDate2, new ArrayList<Student>());
+        advisors[2] = new Advisor("Robert", "David", "Johnson", "rdj4052", phone9, email9, address9, "Assistant Professor", 55000.0, hireDate3, new ArrayList<Student>());
 
         // Student arrays (6, 2 per advisor)
         Student[] students = new Student[6];
-        students[0] = new Student("Alice", "David", "Doe", "xsa7012", phone1, email1, address1, "Computer Science", 8000.0, new Date(2023, 9, 1), new ArrayList<Course>());
-        students[1] = new Student("Bob", "Peter", "Smith", "zmb8245", phone2, email2, address2, "Engineering", 9000.0, new Date(2023, 9, 1), new ArrayList<Course>());
-        students[2] = new Student("Charlie", "Noah", "Johnson", "xct9421", phone3, email3, address3, "Mathematics", 7500.0, new Date(2023, 9, 1), new ArrayList<Course>());
-        students[3] = new Student("David", "Luke", "Lee", "xdl7069", phone4, email4, address4, "Biology", 8500.0, new Date(2023, 9, 1), new ArrayList<Course>());
-        students[4] = new Student("Eve", "Myles", "Brown", "xee1092", phone5, email5, address5, "Physics", 8200.0, new Date(2023, 9, 1), new ArrayList<Course>());
-        students[5] = new Student("Frank", "Gabe", "Clark", "xfr5527", phone6, email6, address6, "Chemistry", 7800.0, new Date(2023, 9, 1), new ArrayList<Course>());
+        students[0] = new Student("Alice", "David", "Doe", "add7012", phone1, email1, address1, "Computer Science", 8000.0, new Date(1, 9, 2015), new ArrayList<Course>());
+        students[1] = new Student("Bob", "Peter", "Smith", "bps8245", phone2, email2, address2, "Engineering", 9000.0, new Date(20, 3, 2003), new ArrayList<Course>());
+        students[2] = new Student("Charlie", "Noah", "Johnson", "cnj9421", phone3, email3, address3, "Mathematics", 7500.0, new Date(4, 11, 2010), new ArrayList<Course>());
+        students[3] = new Student("David", "Luke", "Lee", "dll7069", phone4, email4, address4, "Biology", 8500.0, new Date(12, 2, 2018), new ArrayList<Course>());
+        students[4] = new Student("Eve", "Myles", "Brown", "emb1092", phone5, email5, address5, "Physics", 8200.0, new Date(15, 3, 2020), new ArrayList<Course>());
+        students[5] = new Student("Frank", "Gabe", "Clark", "fgc5527", phone6, email6, address6, "Chemistry", 7800.0, new Date(26, 4, 2022), new ArrayList<Course>());
 
         //uses Set method to assign 2 students to 1 advisor
         ArrayList<Student> advisees1 = new ArrayList<>();
@@ -121,7 +119,7 @@ public class AdviseeTester {
         students[5].Payment();
 
         /* Display information
-        for (Advisor advisor : advisors) {
+        for (Advisor advisorsList : advisors) {
             System.out.println(advisor.display());
         }
 
@@ -131,6 +129,7 @@ public class AdviseeTester {
          */
 
         ArrayList<Advisor> advisorsList = new ArrayList<>(); // initializes new advisorList array to add/delete advisors as needed.
+
         // Copy elements from the array to the ArrayList
         for (Advisor advisor : advisors) {
             advisorsList.add(advisor);
@@ -179,10 +178,11 @@ public class AdviseeTester {
 
     // addAdvisor function prompts a new advisor with 2 empty advisees (students)
     public static void addAdvisor(ArrayList<Advisor> advisorsList) {
-        Advisor newAdvisor = new Advisor("", "", "", "", new Phone("", "", ""),
+        Advisor newAdvisor = new Advisor("NewAdvisorFirstName", "", "NewAdvisorLastName", "", new Phone("", "", ""),
                 new Email("", ""), new Address("","","",""), "", 0.0, new Date(0, 0, 0), new ArrayList<Student>());
+        newAdvisor.setAdvisees(new ArrayList<>());
         advisorsList.add(newAdvisor);
-        System.out.println("Advisor succesfully created");
+        System.out.println("Advisor successfully created");
     }
 
     private static void editAdvisor(ArrayList<Advisor> advisorsList) {
@@ -368,7 +368,7 @@ public class AdviseeTester {
                         // Submenu for editing hire Date
                         boolean dateEditing = true;
                         while (dateEditing) {
-                            System.out.println("Select which part of the admit date to edit:");
+                            System.out.println("Select which part of the hire date to edit:");
                             System.out.println("1. Day");
                             System.out.println("2. Month");
                             System.out.println("3. Year");
@@ -376,22 +376,27 @@ public class AdviseeTester {
                             int dateChoice = scanner.nextInt();
                             scanner.nextLine();
 
-                            if (dateChoice == 1) {
-                                System.out.println("Enter the new phone day: ");
-                                int day = scanner.nextInt();
-                                selectedAdvisor.getHireDate().setDay(day);
-                            } else if (dateChoice == 2) {
-                                System.out.println("Enter the new phone model: ");
-                                int month = scanner.nextInt();
-                                selectedAdvisor.getHireDate().setMonth(month);
-                            } else if (dateChoice == 3) {
-                                System.out.println("Enter the new phone number: ");
-                                int year = scanner.nextInt();
-                                selectedAdvisor.getHireDate().setYear(year);
-                            } else if (dateChoice == 4) {
-                                dateEditing = false; // Exit the submenu
-                            } else {
-                                System.out.println("Invalid choice. Please enter a valid option.");
+                            switch (dateChoice) {
+                                case 1:
+                                    System.out.println("Enter the new day: ");
+                                    int day = scanner.nextInt();
+                                    selectedAdvisor.getHireDate().setDay(day);
+                                    break;
+                                case 2:
+                                    System.out.println("Enter the new month: ");
+                                    int month = scanner.nextInt();
+                                    selectedAdvisor.getHireDate().setMonth(month);
+                                    break;
+                                case 3:
+                                    System.out.println("Enter the new year: ");
+                                    int year = scanner.nextInt();
+                                    selectedAdvisor.getHireDate().setYear(year);
+                                    break;
+                                case 4:
+                                    dateEditing = false;
+                                    break;
+                                default:
+                                    System.out.println("Invalid choice. Please enter a valid option.");
                             }
                         }
                         break;
@@ -407,33 +412,51 @@ public class AdviseeTester {
                             scanner.nextLine();
 
                             if (option == 1) {
-                                // add advisee
-                                /*
-                                  sub menu
-                                  create new advisee
-                                  add existing advisee
-                                 */
+                                Student newStudent = new Student("NewAdviseeFirstName", "", "NewAdviseeLastName", "", new Phone("", "", ""),
+                                        new Email("", ""), new Address("","","",""), "", 0.0, new Date(0, 0, 0), new ArrayList<Course>());
+                                selectedAdvisor.getAdvisees().add(newStudent);
+                                System.out.println("Advisee successfully created");
                             }
                             else if (option == 2) {
-                                // remove advisee
-                                /*
-                                  sub menu
-                                  list of advisees for this advisor
-                                  if there are no advisees, print message
-                                 */
+                                if (selectedAdvisor.getAdvisees().isEmpty()) {
+                                    System.out.println("There are no advisees to delete.");
+                                    return;
+                                }
+
+                                System.out.println("Select which student to delete:");
+
+                                for (int i = 0; i < selectedAdvisor.getAdvisees().size(); i++) {
+                                    Student student = selectedAdvisor.getAdvisees().get(i);
+                                    System.out.println((i + 1) + ". " + student.getFirstName() + " " + student.getLastName());
+                                }
+
+                                int studentIndex = scanner.nextInt();
+
+                                if (studentIndex >= 0 && studentIndex < selectedAdvisor.getAdvisees().size()) {
+                                    Student deletedStudent = selectedAdvisor.getAdvisees().get(studentIndex);
+
+                                    // Display the students name before being deleted
+                                    System.out.println("Advisee to be deleted:");
+                                    System.out.println(deletedStudent.getFirstName() + " " + deletedStudent.getLastName());
+                                    selectedAdvisor.getAdvisees().remove(studentIndex); // Remove the advisor from the list
+                                    System.out.println("Advisee deleted successfully.\n");
+
+                                } else {
+                                    System.out.println("Invalid advisee index. Please select a valid student.");
+                                }
                             } else if (option == 3) {
                                 System.out.println("Select a student to modify:");
                                 for (int i = 0; i < selectedAdvisor.getAdvisees().size(); i++) {
-                                    System.out.println((i + 1) + ". " + selectedAdvisor.getAdvisees().get(i).getFirstName()
-                                            + " " + selectedAdvisor.getAdvisees().get(i).getLastName());
+                                    Student modifyStudent = selectedAdvisor.getAdvisees().get(i);
+                                    System.out.println((i + 1) + ". " + modifyStudent.getFirstName() + " " + modifyStudent.getLastName());
+
                                 }
                                 System.out.println((selectedAdvisor.getAdvisees().size() + 1) + ". Exit Submenu");
 
-                                int studentIndex = scanner.nextInt();
-                                scanner.nextLine();
+                                int studentIndex = scanner.nextInt() - 1;
 
                                 if (studentIndex >= 0 && studentIndex < selectedAdvisor.getAdvisees().size()){
-                                    Student selectedStudent = selectedAdvisor.getAdvisees().get(studentIndex-1);
+                                    Student selectedStudent = selectedAdvisor.getAdvisees().get(studentIndex);
 
                                     boolean studentEditing = true;
                                     while (studentEditing) {
@@ -501,7 +524,49 @@ public class AdviseeTester {
         }
     }
 
+    public static void changeDate(Advisor selectedAdvisor, Scanner scanner) {
+        boolean dateEditing = true;
+        while (dateEditing) {
+            System.out.println("Select which part of the hire date to edit:");
+            System.out.println("1. Day");
+            System.out.println("2. Month");
+            System.out.println("3. Year");
+            System.out.println("4. Exit Submenu");
+            int dateChoice = scanner.nextInt();
+            scanner.nextLine();
+
+            switch (dateChoice) {
+                case 1:
+                    System.out.println("Enter the new day: ");
+                    int day = scanner.nextInt();
+                    selectedAdvisor.getHireDate().setDay(day);
+                    break;
+                case 2:
+                    System.out.println("Enter the new month: ");
+                    int month = scanner.nextInt();
+                    selectedAdvisor.getHireDate().setMonth(month);
+                    break;
+                case 3:
+                    System.out.println("Enter the new year: ");
+                    int year = scanner.nextInt();
+                    selectedAdvisor.getHireDate().setYear(year);
+                    break;
+                case 4:
+                    dateEditing = false;
+                    break;
+                default:
+                    System.out.println("Invalid choice. Please enter a valid option.");
+            }
+        }
+    }
+
+
     private static void deleteAdvisor(ArrayList<Advisor> advisorsList) {
+        if (advisorsList.isEmpty()) {
+            System.out.println("There are no advisors to delete.");
+            return;
+        }
+
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("Select which advisor to delete:");
@@ -513,11 +578,10 @@ public class AdviseeTester {
 
         int advisorIndex = scanner.nextInt() - 1;
 
-        // Check if the entered index is within the valid range
         if (advisorIndex >= 0 && advisorIndex < advisorsList.size()) {
             Advisor deletedAdvisor = advisorsList.get(advisorIndex);
 
-            // Display the advisor's information before deletion
+            // Display the advisor's name before being deleted
             System.out.println("Advisor to be deleted:");
             System.out.println(deletedAdvisor.getFirstName() + " " + deletedAdvisor.getLastName());
             advisorsList.remove(advisorIndex); // Remove the advisor from the list
