@@ -219,8 +219,6 @@ public class AdviseeTester {
                 System.out.println("10. Exit Editing Menu");
 
                 int choice = scanner.nextInt();
-                scanner.nextLine();
-
 
                 switch (choice) {
                     case 1:
@@ -233,21 +231,24 @@ public class AdviseeTester {
                             System.out.println("3. Last Name");
                             System.out.println("4. Exit Submenu");
                             int nameChoice = scanner.nextInt();
-                            scanner.nextLine();
 
                             if (nameChoice == 1) {
+                                scanner.nextLine();
                                 System.out.println("Enter the new first name: ");
                                 String firstName = scanner.nextLine();
                                 selectedAdvisor.setFirstName(firstName);
                             } else if (nameChoice == 2) {
+                                scanner.nextLine();
                                 System.out.println("Enter the new middle name: ");
                                 String middleName = scanner.nextLine();
                                 selectedAdvisor.setMiddleName(middleName);
                             } else if (nameChoice == 3) {
+                                scanner.nextLine();
                                 System.out.println("Enter the new last name: ");
                                 String lastName = scanner.nextLine();
                                 selectedAdvisor.setLastName(lastName);
                             } else if (nameChoice == 4) {
+                                scanner.nextLine();
                                 nameEditing = false; // Exit the submenu
                             } else {
                                 System.out.println("Invalid choice. Please enter a valid option.");
@@ -256,6 +257,7 @@ public class AdviseeTester {
                         break;
                     case 2:
                         // ID changing
+                        scanner.nextLine();
                         System.out.println("Enter the new academic ID: ");
                         String id = scanner.nextLine();
                         selectedAdvisor.setAcademicId(id);
@@ -334,7 +336,7 @@ public class AdviseeTester {
 
                             if (addressChoice == 1) {
                                 System.out.println("Enter the new street number: ");
-                                String streetNo = scanner.next();
+                                String streetNo = scanner.nextLine();
                                 selectedAdvisor.getAddress().setStreetNo(streetNo);
                             } else if (addressChoice == 2) {
                                 System.out.println("Enter the new city: ");
@@ -357,6 +359,7 @@ public class AdviseeTester {
                         break;
                     case 6:
                         // title changing
+                        scanner.nextLine();
                         System.out.println("Enter the new advisor title: ");
                         String title = scanner.nextLine();
                         selectedAdvisor.setAdvisorTitle(title);
@@ -463,19 +466,64 @@ public class AdviseeTester {
                                     boolean studentEditing = true;
                                     while (studentEditing) {
                                         System.out.println("Select which student attribute to modify:");
-                                        System.out.println("1. Major");
-                                        System.out.println("2. Admit Date");
-                                        System.out.println("3. Course Information");
-                                        System.out.println("4. Exit Advisee Editor");
+                                        System.out.println("1. Name");
+                                        System.out.println("2. Id");
+                                        System.out.println("3. Phone");
+                                        System.out.println("4. Email");
+                                        System.out.println("5. Address");
+                                        System.out.println("6. Major");
+                                        System.out.println("7. Admit Date");
+                                        System.out.println("8. Course Information");
+                                        System.out.println("9. Exit Advisee Editor");
 
                                         int studentChoice = scanner.nextInt();
                                         scanner.nextLine();
 
                                         if (studentChoice == 1) {
+                                            System.out.println("Enter first name: ");
+                                            selectedStudent.setFirstName(scanner.nextLine());
+                                            System.out.println("Enter middle name: ");
+                                            selectedStudent.setMiddleName(scanner.nextLine());
+                                            System.out.println("Enter last name: ");
+                                            selectedStudent.setLastName(scanner.nextLine());
+                                        }
+                                        else if (studentChoice == 2) {
+                                            System.out.println("Enter academic id: ");
+                                            selectedStudent.setAcademicId(scanner.nextLine());
+                                        }
+                                        else if (studentChoice == 3) {
+                                            System.out.println("Enter phone brand: ");
+                                            String phoneBrand = scanner.nextLine();
+                                            System.out.println("Enter phone model: ");
+                                            String phoneModel = scanner.nextLine();
+                                            System.out.println("Enter phone number: ");
+                                            String phoneNumber = scanner.nextLine();
+                                            selectedStudent.setPhoneNum(new Phone(phoneBrand, phoneModel, phoneNumber));
+                                        }
+                                        else if (studentChoice == 4) {
+                                            System.out.println("Enter email type: ");
+                                            String emailType = scanner.nextLine();
+                                            System.out.println("Enter email address: ");
+                                            String emailAddress = scanner.nextLine();
+                                            selectedStudent.setEmail(new Email(emailType, emailAddress));
+                                        }
+                                        else if (studentChoice == 5) {
+                                            System.out.println("Enter street number: ");
+                                            String streetNo = scanner.nextLine();
+                                            System.out.println("Enter city: ");
+                                            String city = scanner.nextLine();
+                                            System.out.println("Enter state: ");
+                                            String state = scanner.nextLine();
+                                            System.out.println("Enter zipcode: ");
+                                            String zipcode = scanner.nextLine();
+                                            selectedStudent.setAddress(new Address(streetNo, city, state, zipcode));
+                                        }
+                                        else if (studentChoice == 6) {
                                             System.out.println("Enter the new major: ");
                                             String major = scanner.nextLine();
                                             selectedStudent.setMajor(major);
-                                        } else if (studentChoice == 2) {
+                                        }
+                                        else if (studentChoice == 7) {
                                             System.out.print("Enter day: ");
                                             int newDay = scanner.nextInt();
                                             System.out.print("Enter month: ");
@@ -486,7 +534,8 @@ public class AdviseeTester {
                                             scanner.nextLine();
 
                                             selectedStudent.setAdmitDate(new Date(newDay, newMonth, newYear));
-                                        } else if (studentChoice == 3) {
+                                        }
+                                        else if (studentChoice == 8) {
                                             // ADD SUBMENU FOR COURSE MODIFICATION
                                             // REMEMBER TO CALL PAYMENT AFTER COURSE MODIFICATION
                                             boolean courseEditing = true;
@@ -551,9 +600,11 @@ public class AdviseeTester {
                                                     System.out.println("Invalid choice. Please enter a valid option.");
                                             }
 
-                                        } else if (studentChoice == 4) {
+                                        }
+                                        else if (studentChoice == 9) {
                                             studentEditing = false; // Exit the submenu
-                                        }else {
+                                        }
+                                        else {
                                             System.out.println("Invalid choice. Please enter a valid option.");
                                         }
                                     }
@@ -678,3 +729,819 @@ public class AdviseeTester {
 }
 
 //benchmark data
+/* Testing delete
+Advisor Menu:
+a. Add an advisor
+b. Edit an advisor
+c. Delete an advisor
+d. Display an advisor's information
+e. Exit
+Enter your choice: c
+Select which advisor to delete:
+1. John Doe
+2. Jane Smith
+3. Robert Johnson
+1
+Advisor to be deleted:
+John Doe
+Advisor deleted successfully.
+
+Advisor Menu:
+a. Add an advisor
+b. Edit an advisor
+c. Delete an advisor
+d. Display an advisor's information
+e. Exit
+Enter your choice: c
+Select which advisor to delete:
+1. Jane Smith
+2. Robert Johnson
+2
+Advisor to be deleted:
+Robert Johnson
+Advisor deleted successfully.
+
+Advisor Menu:
+a. Add an advisor
+b. Edit an advisor
+c. Delete an advisor
+d. Display an advisor's information
+e. Exit
+Enter your choice: c
+Select which advisor to delete:
+1. Jane Smith
+1
+Advisor to be deleted:
+Jane Smith
+Advisor deleted successfully.
+
+Advisor Menu:
+a. Add an advisor
+b. Edit an advisor
+c. Delete an advisor
+d. Display an advisor's information
+e. Exit
+Enter your choice: c
+There are no advisors to delete.
+Advisor Menu:
+a. Add an advisor
+b. Edit an advisor
+c. Delete an advisor
+d. Display an advisor's information
+e. Exit
+Enter your choice: e
+Exiting the application.
+ */
+/* Displaying Advisors
+Advisor Menu:
+a. Add an advisor
+b. Edit an advisor
+c. Delete an advisor
+d. Display an advisor's information
+e. Exit
+Enter your choice: d
+Select which advisor to display:
+1. John Doe
+2. Jane Smith
+3. Robert Johnson
+1
+Advisor Info
+Advisor:
+Name: John James Doe
+id: jjd5028
+Phone: Brand: Nokia | Model: Blackberry | Number: 111-111-1111
+Email: {type='Academic', address='johndoe@psu.edu'}
+Address: 9367 Morissette Cove Patview, CO 47224
+Title: Professor
+Advisee Rate: $7500.00
+Salary: $15000.00
+Hired Date: 10/15/2004
+Advisees:
+Student:
+Name: Alice David Doe
+id: add7012
+Phone: Brand: Apple | Model: iPhone 7 plus | Number: 555-555-5555
+Email: {type='Academic', address='alicedoe@psu.edu'}
+Address: 972 Timothy Mission Antoineport, NM 62149
+Major: Computer Science
+TuitionPerSem: $5500.00
+Admit Date: 9/1/2015
+Course List:
+Course Number: CMPSC132 | Number of Credits: 3.0 | Price per Credit: $500.00
+Course Number: MATH220 | Number of Credits: 4.0 | Price per Credit: $500.00
+Course Number: PHYS212 | Number of Credits: 4.0 | Price per Credit: $500.00
+
+
+Student:
+Name: Bob Peter Smith
+id: bps8245
+Phone: Brand: Samsung | Model: Galaxy S22 | Number: 666-666-6666
+Email: {type='Academic', address='bobsmith@psu.edu'}
+Address: 58060 Mohr Curve Schowaltershire, MT 60849
+Major: Engineering
+TuitionPerSem: $5500.00
+Admit Date: 3/20/2003
+Course List:
+Course Number: CMPSC132 | Number of Credits: 3.0 | Price per Credit: $500.00
+Course Number: MATH220 | Number of Credits: 4.0 | Price per Credit: $500.00
+Course Number: PHYS212 | Number of Credits: 4.0 | Price per Credit: $500.00
+
+
+
+
+Advisor Menu:
+a. Add an advisor
+b. Edit an advisor
+c. Delete an advisor
+d. Display an advisor's information
+e. Exit
+Enter your choice: d
+Select which advisor to display:
+1. John Doe
+2. Jane Smith
+3. Robert Johnson
+2
+Advisor Info
+Advisor:
+Name: Jane William Smith
+id: jws3015
+Phone: Brand: Samsung | Model: Galaxy Z Flip | Number: 222-222-2222
+Email: {type='Academic', address='janesmith@psu.edu'}
+Address: 6081 Champlin Glens Lake Byron, IN 69474
+Title: Head Professor
+Advisee Rate: $6000.00
+Salary: $12000.00
+Hired Date: 9/1/2009
+Advisees:
+Student:
+Name: Charlie Noah Johnson
+id: cnj9421
+Phone: Brand: Google | Model: Pixel 7 | Number: 777-777-7777
+Email: {type='Academic', address='charliejohnson@psu.edu'}
+Address: 13766 Larkin Ford Leanorafurt, MI 99988
+Major: Mathematics
+TuitionPerSem: $5000.00
+Admit Date: 11/4/2010
+Course List:
+Course Number: CMPSC132 | Number of Credits: 3.0 | Price per Credit: $500.00
+Course Number: CMPSC132 | Number of Credits: 3.0 | Price per Credit: $500.00
+Course Number: PHYS212 | Number of Credits: 4.0 | Price per Credit: $500.00
+
+
+Student:
+Name: David Luke Lee
+id: dll7069
+Phone: Brand: Apple | Model: iPhone 15 pro | Number: 888-888-8888
+Email: {type='Academic', address='davidlee@psu.edu'}
+Address: 73348 Rocco Bypass Morarton, NM 90274
+Major: Biology
+TuitionPerSem: $5500.00
+Admit Date: 2/12/2018
+Course List:
+Course Number: CMPSC132 | Number of Credits: 3.0 | Price per Credit: $500.00
+Course Number: MATH220 | Number of Credits: 4.0 | Price per Credit: $500.00
+Course Number: PHYS212 | Number of Credits: 4.0 | Price per Credit: $500.00
+
+
+
+
+Advisor Menu:
+a. Add an advisor
+b. Edit an advisor
+c. Delete an advisor
+d. Display an advisor's information
+e. Exit
+Enter your choice: d
+Select which advisor to display:
+1. John Doe
+2. Jane Smith
+3. Robert Johnson
+3
+Advisor Info
+Advisor:
+Name: Robert David Johnson
+id: rdj4052
+Phone: Brand: Google | Model: Pixel 6 | Number: 333-333-3333
+Email: {type='Academic', address='robertjohnson@psu.edu'}
+Address: 392 Roberto Club Rockyport, MN 67300
+Title: Assistant Professor
+Advisee Rate: $5500.00
+Salary: $11000.00
+Hired Date: 8/5/2014
+Advisees:
+Student:
+Name: Eve Myles Brown
+id: emb1092
+Phone: Brand: Xiaomi | Model: Xiaomi 13 | Number: 999-999-9999
+Email: {type='Academic', address='evebrown@psu.edu'}
+Address: 15645 Fanny Expressway Marchelleburgh, NH 38455
+Major: Physics
+TuitionPerSem: $5000.00
+Admit Date: 3/15/2020
+Course List:
+Course Number: CMPSC132 | Number of Credits: 3.0 | Price per Credit: $500.00
+Course Number: CMPSC132 | Number of Credits: 3.0 | Price per Credit: $500.00
+Course Number: MATH220 | Number of Credits: 4.0 | Price per Credit: $500.00
+
+
+Student:
+Name: Frank Gabe Clark
+id: fgc5527
+Phone: Brand: Huawei | Model: P50 pro | Number: 000-000-0000
+Email: {type='Academic', address='frankclark@psu.edu'}
+Address: 394 Gleichner Parkway Wiltonchester, LA 98677
+Major: Chemistry
+TuitionPerSem: $5000.00
+Admit Date: 4/26/2022
+Course List:
+Course Number: CMPSC132 | Number of Credits: 3.0 | Price per Credit: $500.00
+Course Number: CMPSC132 | Number of Credits: 3.0 | Price per Credit: $500.00
+Course Number: PHYS212 | Number of Credits: 4.0 | Price per Credit: $500.00
+
+
+
+
+Advisor Menu:
+a. Add an advisor
+b. Edit an advisor
+c. Delete an advisor
+d. Display an advisor's information
+e. Exit
+Enter your choice: e
+Exiting the application.
+ */
+/* Create and Edit new advisor
+Advisor Menu:
+a. Add an advisor
+b. Edit an advisor
+c. Delete an advisor
+d. Display an advisor's information
+e. Exit
+Enter your choice: a
+Advisor successfully created
+Advisor Menu:
+a. Add an advisor
+b. Edit an advisor
+c. Delete an advisor
+d. Display an advisor's information
+e. Exit
+Enter your choice: d
+Select which advisor to display:
+1. John Doe
+2. Jane Smith
+3. Robert Johnson
+4. NewAdvisorFirstName NewAdvisorLastName
+4
+Advisor Info
+Advisor:
+Name: NewAdvisorFirstName  NewAdvisorLastName
+id:
+Phone: Brand:  | Model:  | Number:
+Email: {type='', address=''}
+Address:  ,
+Title:
+Advisee Rate: $0.00
+Salary: $0.00
+Hired Date: 0/0/0
+Advisees:
+
+
+Advisor Menu:
+a. Add an advisor
+b. Edit an advisor
+c. Delete an advisor
+d. Display an advisor's information
+e. Exit
+Enter your choice: b
+Select which advisor to edit:
+1. John Doe
+2. Jane Smith
+3. Robert Johnson
+4. NewAdvisorFirstName NewAdvisorLastName
+4
+Select an attribute to edit:
+1. Name
+2. Id
+3. Phone
+4. Email
+5. Address
+6. Advisor Title
+7. Advisee Rate
+8. Hire Date
+9. Advisees
+10. Exit Editing Menu
+1
+Select which part of the name to edit:
+1. First Name
+2. Middle Name
+3. Last Name
+4. Exit Submenu
+1
+Enter the new first name:
+Brian
+Select which part of the name to edit:
+1. First Name
+2. Middle Name
+3. Last Name
+4. Exit Submenu
+3
+Enter the new last name:
+Tran
+Select which part of the name to edit:
+1. First Name
+2. Middle Name
+3. Last Name
+4. Exit Submenu
+2
+Enter the new middle name:
+Charles
+Select which part of the name to edit:
+1. First Name
+2. Middle Name
+3. Last Name
+4. Exit Submenu
+4
+Select an attribute to edit:
+1. Name
+2. Id
+3. Phone
+4. Email
+5. Address
+6. Advisor Title
+7. Advisee Rate
+8. Hire Date
+9. Advisees
+10. Exit Editing Menu
+2
+Enter the new academic ID:
+bzt5255
+Select an attribute to edit:
+1. Name
+2. Id
+3. Phone
+4. Email
+5. Address
+6. Advisor Title
+7. Advisee Rate
+8. Hire Date
+9. Advisees
+10. Exit Editing Menu
+3
+Select which part of the phone to edit:
+1. Brand
+2. Model
+3. Number
+4. Exit Submenu
+1
+Enter the new phone brand:
+Apple
+Select which part of the phone to edit:
+1. Brand
+2. Model
+3. Number
+4. Exit Submenu
+2
+Enter the new phone model:
+iPhone 7 plus
+Select which part of the phone to edit:
+1. Brand
+2. Model
+3. Number
+4. Exit Submenu
+3
+Enter the new phone number:
+111-111-1111
+Select which part of the phone to edit:
+1. Brand
+2. Model
+3. Number
+4. Exit Submenu
+4
+Select an attribute to edit:
+1. Name
+2. Id
+3. Phone
+4. Email
+5. Address
+6. Advisor Title
+7. Advisee Rate
+8. Hire Date
+9. Advisees
+10. Exit Editing Menu
+4
+Select which part of the email to edit:
+1. Email Type
+2. Email Address
+3. Exit Submenu
+1
+Enter the new email type:
+Academic
+Select which part of the email to edit:
+1. Email Type
+2. Email Address
+3. Exit Submenu
+2
+Enter the new email address:
+bzt5255@psu.edu
+Select which part of the email to edit:
+1. Email Type
+2. Email Address
+3. Exit Submenu
+3
+Select an attribute to edit:
+1. Name
+2. Id
+3. Phone
+4. Email
+5. Address
+6. Advisor Title
+7. Advisee Rate
+8. Hire Date
+9. Advisees
+10. Exit Editing Menu
+5
+Select which part of the address to edit:
+1. Street Number
+2. City
+3. State
+4. Zipcode
+5. Exit Submenu
+1
+Enter the new street number:
+123 Sesame Street
+Select which part of the address to edit:
+1. Street Number
+2. City
+3. State
+4. Zipcode
+5. Exit Submenu
+2
+Enter the new city:
+Media
+Select which part of the address to edit:
+1. Street Number
+2. City
+3. State
+4. Zipcode
+5. Exit Submenu
+3
+Enter the new state:
+PA
+Select which part of the address to edit:
+1. Street Number
+2. City
+3. State
+4. Zipcode
+5. Exit Submenu
+4
+Enter the new zipcode:
+19063
+Select which part of the address to edit:
+1. Street Number
+2. City
+3. State
+4. Zipcode
+5. Exit Submenu
+5
+Select an attribute to edit:
+1. Name
+2. Id
+3. Phone
+4. Email
+5. Address
+6. Advisor Title
+7. Advisee Rate
+8. Hire Date
+9. Advisees
+10. Exit Editing Menu
+6
+Enter the new advisor title:
+Doctor
+Select an attribute to edit:
+1. Name
+2. Id
+3. Phone
+4. Email
+5. Address
+6. Advisor Title
+7. Advisee Rate
+8. Hire Date
+9. Advisees
+10. Exit Editing Menu
+7
+Enter the new advisee rate:
+1000000
+Select an attribute to edit:
+1. Name
+2. Id
+3. Phone
+4. Email
+5. Address
+6. Advisor Title
+7. Advisee Rate
+8. Hire Date
+9. Advisees
+10. Exit Editing Menu
+8
+Select which part of the hire date to edit:
+1. Day
+2. Month
+3. Year
+4. Exit Submenu
+1
+Enter the new day:
+9
+Select which part of the hire date to edit:
+1. Day
+2. Month
+3. Year
+4. Exit Submenu
+2
+Enter the new month:
+12
+Select which part of the hire date to edit:
+1. Day
+2. Month
+3. Year
+4. Exit Submenu
+3
+Enter the new year:
+2003
+Select which part of the hire date to edit:
+1. Day
+2. Month
+3. Year
+4. Exit Submenu
+4
+Select an attribute to edit:
+1. Name
+2. Id
+3. Phone
+4. Email
+5. Address
+6. Advisor Title
+7. Advisee Rate
+8. Hire Date
+9. Advisees
+10. Exit Editing Menu
+9
+1. Add advisee
+2. Remove advisee
+3. Edit advisee
+4. Exit submenu
+1
+Advisee successfully created
+1. Add advisee
+2. Remove advisee
+3. Edit advisee
+4. Exit submenu
+3
+Select a student to modify:
+1. NewAdviseeFirstName NewAdviseeLastName
+2. Exit Submenu
+1
+Select which student attribute to modify:
+1. Name
+2. Id
+3. Phone
+4. Email
+5. Address
+6. Major
+7. Admit Date
+8. Course Information
+9. Exit Advisee Editor
+1
+Enter first name:
+Akku
+Enter middle name:
+
+Enter last name:
+Mahesh
+Select which student attribute to modify:
+1. Name
+2. Id
+3. Phone
+4. Email
+5. Address
+6. Major
+7. Admit Date
+8. Course Information
+9. Exit Advisee Editor
+2
+Enter academic id:
+szm2314
+Select which student attribute to modify:
+1. Name
+2. Id
+3. Phone
+4. Email
+5. Address
+6. Major
+7. Admit Date
+8. Course Information
+9. Exit Advisee Editor
+3
+Enter phone brand:
+Samsung
+Enter phone model:
+Galaxy S7
+Enter phone number:
+222-222-2222
+Select which student attribute to modify:
+1. Name
+2. Id
+3. Phone
+4. Email
+5. Address
+6. Major
+7. Admit Date
+8. Course Information
+9. Exit Advisee Editor
+4
+Enter email type:
+Academic
+Enter email address:
+szm2314@psu.edu
+Select which student attribute to modify:
+1. Name
+2. Id
+3. Phone
+4. Email
+5. Address
+6. Major
+7. Admit Date
+8. Course Information
+9. Exit Advisee Editor
+5
+Enter street number:
+420 Poggers Avenue
+Enter city:
+Narnia
+Enter state:
+PA
+Enter zipcode:
+69420
+Select which student attribute to modify:
+1. Name
+2. Id
+3. Phone
+4. Email
+5. Address
+6. Major
+7. Admit Date
+8. Course Information
+9. Exit Advisee Editor
+6
+Enter the new major:
+Computer Science
+Select which student attribute to modify:
+1. Name
+2. Id
+3. Phone
+4. Email
+5. Address
+6. Major
+7. Admit Date
+8. Course Information
+9. Exit Advisee Editor
+7
+Enter day: 7
+Enter month: 7
+Enter Year: 2022
+Select which student attribute to modify:
+1. Name
+2. Id
+3. Phone
+4. Email
+5. Address
+6. Major
+7. Admit Date
+8. Course Information
+9. Exit Advisee Editor
+8
+1. Add course
+2. Remove course
+3. Edit course
+4. Exit submenu
+1
+Course successfully created.
+1. Add course
+2. Remove course
+3. Edit course
+4. Exit submenu
+3
+Select course to be edited:
+1) Course Number:  | Number of Credits: 0.0 | Price per Credit: $0.00
+1
+Enter Course number:
+MATH220
+Enter Number of credits:
+3
+Enter price per credit:
+500
+Course successfully edited.
+1. Add course
+2. Remove course
+3. Edit course
+4. Exit submenu
+1
+Course successfully created.
+1. Add course
+2. Remove course
+3. Edit course
+4. Exit submenu
+3
+Select course to be edited:
+1) Course Number: MATH220 | Number of Credits: 3.0 | Price per Credit: $500.00
+2) Course Number:  | Number of Credits: 0.0 | Price per Credit: $0.00
+2
+Enter Course number:
+CMPSC221
+Enter Number of credits:
+3
+Enter price per credit:
+500
+Course successfully edited.
+1. Add course
+2. Remove course
+3. Edit course
+4. Exit submenu
+4
+Select which student attribute to modify:
+1. Name
+2. Id
+3. Phone
+4. Email
+5. Address
+6. Major
+7. Admit Date
+8. Course Information
+9. Exit Advisee Editor
+9
+1. Add advisee
+2. Remove advisee
+3. Edit advisee
+4. Exit submenu
+4
+Select an attribute to edit:
+1. Name
+2. Id
+3. Phone
+4. Email
+5. Address
+6. Advisor Title
+7. Advisee Rate
+8. Hire Date
+9. Advisees
+10. Exit Editing Menu
+10
+Advisor Menu:
+a. Add an advisor
+b. Edit an advisor
+c. Delete an advisor
+d. Display an advisor's information
+e. Exit
+Enter your choice: d
+Select which advisor to display:
+1. John Doe
+2. Jane Smith
+3. Robert Johnson
+4. Brian Tran
+4
+Advisor Info
+Advisor:
+Name: Brian Charles Tran
+id: bzt5255
+Phone: Brand: Apple | Model: iPhone 7 plus | Number: 111-111-1111
+Email: {type='Academic', address='bzt5255@psu.edu'}
+Address: 123 Sesame Street Media, PA 19063
+Title: Doctor
+Advisee Rate: $1000000
+Salary: $1000000
+Hired Date: 12/9/2003
+Advisees:
+Student:
+Name: Akku  Mahesh
+id: szm2314
+Phone: Brand: Samsung | Model: Galaxy S7 | Number: 222-222-2222
+Email: {type='Academic', address='szm2314@psu.edu'}
+Address: 420 Poggers Avenue Narnia, PA 69420
+Major: Computer Science
+TuitionPerSem: $3000.00
+Admit Date: 7/7/2022
+Course List:
+Course Number: MATH220 | Number of Credits: 3.0 | Price per Credit: $500.00
+Course Number: CMPSC221 | Number of Credits: 3.0 | Price per Credit: $500.00
+
+
+
+
+Advisor Menu:
+a. Add an advisor
+b. Edit an advisor
+c. Delete an advisor
+d. Display an advisor's information
+e. Exit
+Enter your choice: e
+Exiting the application.
+ */

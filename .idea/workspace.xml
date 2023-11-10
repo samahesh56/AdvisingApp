@@ -7,10 +7,6 @@
     <list default="true" id="1901daef-d9ec-49f5-ba5a-2f58693542f9" name="Changes" comment="Initial commit 1">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/AdviseeTester.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/AdviseeTester.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Advisor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Advisor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Course.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Course.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Email.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Email.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Student.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Student.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,7 +40,7 @@
   &quot;keyToString&quot;: {
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;version-5&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;version-poggers&quot;,
     &quot;onboarding.tips.debug.path&quot;: &quot;C:/Users/samah/IdeaProjects/AdvisorApp/src/Main.java&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;org.jetbrains.plugins.github.ui.GithubSettingsConfigurable&quot;
   }
