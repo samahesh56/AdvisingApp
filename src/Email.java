@@ -25,7 +25,7 @@ public class Email {
 
     @Override
     public String toString() {
-        return "Email{" +
+        return "{" +
                 "type='" + type + '\'' +
                 ", address='" + address + '\'' +
                 '}';

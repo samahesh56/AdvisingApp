@@ -3,6 +3,12 @@ public class Course {
     private double numCredits;
     private double pricePerCredit;
 
+    public Course() {
+        courseNum = "";
+        numCredits = 0.0;
+        pricePerCredit = 0.0;
+    }
+
     public Course(String courseNumber, double numCredits, double pricePerCredit) {
         this.courseNum = courseNumber;
         this.numCredits = numCredits;
@@ -35,9 +41,7 @@ public class Course {
 
     // course info
     public String displayCourseInfo() {
-        return "Course Number: " + courseNum + "\n" +
-                "Number of Credits: " + numCredits + "\n" +
-                "Price per Credit: $" + pricePerCredit + "\n";
+        return String.format("Course Number: %s | Number of Credits: %.1f | Price per Credit: $%.2f", courseNum, numCredits, pricePerCredit);
     }
 
 

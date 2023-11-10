@@ -57,18 +57,18 @@ public class AdviseeTester {
 
         // Advisor arrays (3)
         Advisor[] advisors = new Advisor[3];
-        advisors[0] = new Advisor("John", "James", "Doe", "jjd5028", phone7, email7, address7, "Professor", 75000.0, hireDate1, new ArrayList<Student>());
-        advisors[1] = new Advisor("Jane", "William", "Smith", "jws3015", phone8, email8, address8, "Head Professor", 60000.0, hireDate2, new ArrayList<Student>());
-        advisors[2] = new Advisor("Robert", "David", "Johnson", "rdj4052", phone9, email9, address9, "Assistant Professor", 55000.0, hireDate3, new ArrayList<Student>());
+        advisors[0] = new Advisor("John", "James", "Doe", "jjd5028", phone7, email7, address7, "Professor", 7500.0, hireDate1, new ArrayList<Student>());
+        advisors[1] = new Advisor("Jane", "William", "Smith", "jws3015", phone8, email8, address8, "Head Professor", 6000.0, hireDate2, new ArrayList<Student>());
+        advisors[2] = new Advisor("Robert", "David", "Johnson", "rdj4052", phone9, email9, address9, "Assistant Professor", 5500.0, hireDate3, new ArrayList<Student>());
 
         // Student arrays (6, 2 per advisor)
         Student[] students = new Student[6];
-        students[0] = new Student("Alice", "David", "Doe", "add7012", phone1, email1, address1, "Computer Science", 8000.0, new Date(1, 9, 2015), new ArrayList<Course>());
-        students[1] = new Student("Bob", "Peter", "Smith", "bps8245", phone2, email2, address2, "Engineering", 9000.0, new Date(20, 3, 2003), new ArrayList<Course>());
-        students[2] = new Student("Charlie", "Noah", "Johnson", "cnj9421", phone3, email3, address3, "Mathematics", 7500.0, new Date(4, 11, 2010), new ArrayList<Course>());
-        students[3] = new Student("David", "Luke", "Lee", "dll7069", phone4, email4, address4, "Biology", 8500.0, new Date(12, 2, 2018), new ArrayList<Course>());
-        students[4] = new Student("Eve", "Myles", "Brown", "emb1092", phone5, email5, address5, "Physics", 8200.0, new Date(15, 3, 2020), new ArrayList<Course>());
-        students[5] = new Student("Frank", "Gabe", "Clark", "fgc5527", phone6, email6, address6, "Chemistry", 7800.0, new Date(26, 4, 2022), new ArrayList<Course>());
+        students[0] = new Student("Alice", "David", "Doe", "add7012", phone1, email1, address1, "Computer Science", new Date(1, 9, 2015), new ArrayList<Course>());
+        students[1] = new Student("Bob", "Peter", "Smith", "bps8245", phone2, email2, address2, "Engineering", new Date(20, 3, 2003), new ArrayList<Course>());
+        students[2] = new Student("Charlie", "Noah", "Johnson", "cnj9421", phone3, email3, address3, "Mathematics", new Date(4, 11, 2010), new ArrayList<Course>());
+        students[3] = new Student("David", "Luke", "Lee", "dll7069", phone4, email4, address4, "Biology", new Date(12, 2, 2018), new ArrayList<Course>());
+        students[4] = new Student("Eve", "Myles", "Brown", "emb1092", phone5, email5, address5, "Physics", new Date(15, 3, 2020), new ArrayList<Course>());
+        students[5] = new Student("Frank", "Gabe", "Clark", "fgc5527", phone6, email6, address6, "Chemistry", new Date(26, 4, 2022), new ArrayList<Course>());
 
         //uses Set method to assign 2 students to 1 advisor
         ArrayList<Student> advisees1 = new ArrayList<>();
@@ -84,8 +84,11 @@ public class AdviseeTester {
         advisees3.add(students[5]);
 
         advisors[0].setAdvisees(advisees1);
+        advisors[0].Payment();
         advisors[1].setAdvisees(advisees2);
+        advisors[1].Payment();
         advisors[2].setAdvisees(advisees3);
+        advisors[2].Payment();
 
         // Uses get method, and add implement method to assign courses to students.
         students[0].getCourseList().add(course1);
@@ -210,7 +213,7 @@ public class AdviseeTester {
                 System.out.println("4. Email");
                 System.out.println("5. Address");
                 System.out.println("6. Advisor Title");
-                System.out.println("7. Annual Salary");
+                System.out.println("7. Advisee Rate");
                 System.out.println("8. Hire Date");
                 System.out.println("9. Advisees");
                 System.out.println("10. Exit Editing Menu");
@@ -360,9 +363,10 @@ public class AdviseeTester {
                         break;
                     case 7:
                         // title changing
-                        System.out.println("Enter the new annual salary: ");
-                        double salary = scanner.nextDouble();
-                        selectedAdvisor.setSalary(salary);
+                        System.out.println("Enter the new advisee rate: ");
+                        double rate = scanner.nextDouble();
+                        selectedAdvisor.setAdviseeRate(rate);
+                        selectedAdvisor.Payment();
                         break;
                     case 8:
                         // Submenu for editing hire Date
@@ -413,37 +417,35 @@ public class AdviseeTester {
 
                             if (option == 1) {
                                 Student newStudent = new Student("NewAdviseeFirstName", "", "NewAdviseeLastName", "", new Phone("", "", ""),
-                                        new Email("", ""), new Address("","","",""), "", 0.0, new Date(0, 0, 0), new ArrayList<Course>());
+                                        new Email("", ""), new Address("","","",""), "", new Date(0, 0, 0), new ArrayList<Course>());
                                 selectedAdvisor.getAdvisees().add(newStudent);
                                 System.out.println("Advisee successfully created");
                             }
                             else if (option == 2) {
-                                if (selectedAdvisor.getAdvisees().isEmpty()) {
-                                    System.out.println("There are no advisees to delete.");
-                                    return;
+                                if (selectedAdvisor.getAdvisees().size() > 0) {
+                                    System.out.println("Select which advisee to delete:");
+                                    for (int i = 0; i < selectedAdvisor.getAdvisees().size(); i++) {
+                                        Student student = selectedAdvisor.getAdvisees().get(i);
+                                        System.out.println((i + 1) + ". " + student.getFirstName() + " " + student.getLastName());
+                                    }
+
+                                    int studentIndex = scanner.nextInt() - 1;
+
+                                    if (studentIndex >= 0 && studentIndex < selectedAdvisor.getAdvisees().size()) {
+                                        Student deletedStudent = selectedAdvisor.getAdvisees().get(studentIndex);
+
+                                        // Display the students name before being deleted
+                                        System.out.println("Advisee to be deleted:");
+                                        System.out.println(deletedStudent.getFirstName() + " " + deletedStudent.getLastName());
+                                        selectedAdvisor.getAdvisees().remove(studentIndex); // Remove the advisor from the list
+                                        System.out.println("Advisee deleted successfully.\n");
+
+                                    } else {
+                                        System.out.println("Invalid advisee index. Please select a valid student.");
+                                    }
                                 }
-
-                                System.out.println("Select which student to delete:");
-
-                                for (int i = 0; i < selectedAdvisor.getAdvisees().size(); i++) {
-                                    Student student = selectedAdvisor.getAdvisees().get(i);
-                                    System.out.println((i + 1) + ". " + student.getFirstName() + " " + student.getLastName());
-                                }
-
-                                int studentIndex = scanner.nextInt();
-
-                                if (studentIndex >= 0 && studentIndex < selectedAdvisor.getAdvisees().size()) {
-                                    Student deletedStudent = selectedAdvisor.getAdvisees().get(studentIndex);
-
-                                    // Display the students name before being deleted
-                                    System.out.println("Advisee to be deleted:");
-                                    System.out.println(deletedStudent.getFirstName() + " " + deletedStudent.getLastName());
-                                    selectedAdvisor.getAdvisees().remove(studentIndex); // Remove the advisor from the list
-                                    System.out.println("Advisee deleted successfully.\n");
-
-                                } else {
-                                    System.out.println("Invalid advisee index. Please select a valid student.");
-                                }
+                                else
+                                    System.out.println("This advisor has no advisees.");
                             } else if (option == 3) {
                                 System.out.println("Select a student to modify:");
                                 for (int i = 0; i < selectedAdvisor.getAdvisees().size(); i++) {
@@ -462,10 +464,9 @@ public class AdviseeTester {
                                     while (studentEditing) {
                                         System.out.println("Select which student attribute to modify:");
                                         System.out.println("1. Major");
-                                        System.out.println("2. Tuition Per Semester");
-                                        System.out.println("3. Admit Date");
-                                        System.out.println("4. Course Information");
-                                        System.out.println("5. Exit Advisee Editor");
+                                        System.out.println("2. Admit Date");
+                                        System.out.println("3. Course Information");
+                                        System.out.println("4. Exit Advisee Editor");
 
                                         int studentChoice = scanner.nextInt();
                                         scanner.nextLine();
@@ -475,11 +476,6 @@ public class AdviseeTester {
                                             String major = scanner.nextLine();
                                             selectedStudent.setMajor(major);
                                         } else if (studentChoice == 2) {
-                                            System.out.println("Enter the new tuition per semester: ");
-                                            double tuition = scanner.nextDouble();
-                                            scanner.nextLine();
-                                            selectedStudent.setTuitionPerSem(tuition);
-                                        } else if (studentChoice == 3) {
                                             System.out.print("Enter day: ");
                                             int newDay = scanner.nextInt();
                                             System.out.print("Enter month: ");
@@ -490,11 +486,72 @@ public class AdviseeTester {
                                             scanner.nextLine();
 
                                             selectedStudent.setAdmitDate(new Date(newDay, newMonth, newYear));
-                                        } else if (studentChoice == 4) {
+                                        } else if (studentChoice == 3) {
                                             // ADD SUBMENU FOR COURSE MODIFICATION
                                             // REMEMBER TO CALL PAYMENT AFTER COURSE MODIFICATION
+                                            boolean courseEditing = true;
+                                            while (courseEditing) {
+                                                System.out.println("1. Add course");
+                                                System.out.println("2. Remove course");
+                                                System.out.println("3. Edit course");
+                                                System.out.println("4. Exit submenu");
+                                                int courseChoice = scanner.nextInt();
+                                                scanner.nextLine();
+                                                if (courseChoice == 1) {
+                                                    selectedStudent.getCourseList().add(new Course());
+                                                    System.out.println("Course successfully created.");
+                                                }
+                                                else if (courseChoice == 2) {
+                                                    if (selectedStudent.getCourseList().size() > 0) {
+                                                        System.out.println("Select course to be removed:");
+                                                        for (int i = 0; i < selectedStudent.getCourseList().size(); i++) {
+                                                            System.out.printf("%s) %s\n", i + 1,
+                                                                    selectedStudent.getCourseList().get(i).displayCourseInfo());
+                                                        }
+                                                        int removedCourse = scanner.nextInt() - 1;
+                                                        if (removedCourse >= 0 && removedCourse < selectedStudent.getCourseList().size()) {
+                                                            selectedStudent.getCourseList().remove(removedCourse);
+                                                            System.out.println("Course successfully removed.");
+                                                        } else
+                                                            System.out.println("Invalid course index. Please select a valid course.");
+                                                    }
+                                                    else
+                                                        System.out.println("This student has no courses.");
+                                                }
+                                                else if (courseChoice == 3) {
+                                                    System.out.println("Select course to be edited:");
+                                                    for (int i = 0; i < selectedStudent.getCourseList().size(); i++) {
+                                                        System.out.printf("%s) %s\n", i + 1,
+                                                                selectedStudent.getCourseList().get(i).displayCourseInfo());
+                                                    }
+                                                    int editedCourse = scanner.nextInt() - 1;
+                                                    scanner.nextLine();
 
-                                        } else if (studentChoice == 5) {
+                                                    if (editedCourse >= 0 && editedCourse < selectedStudent.getCourseList().size()) {
+                                                        System.out.println("Enter Course number: ");
+                                                        String newCourseNumber = scanner.nextLine();
+                                                        System.out.println("Enter Number of credits: ");
+                                                        double newNumCredits = scanner.nextDouble();
+                                                        System.out.println("Enter price per credit: ");
+                                                        double newPricePerCredit = scanner.nextDouble();
+                                                        scanner.nextLine();
+
+                                                        selectedStudent.getCourseList().set(editedCourse,
+                                                                new Course(newCourseNumber, newNumCredits, newPricePerCredit));
+
+                                                        System.out.println("Course successfully edited.");
+                                                        selectedStudent.Payment();
+                                                    }
+                                                    else
+                                                        System.out.println("Invalid course index. Please select a valid course.");
+                                                }
+                                                else if (courseChoice == 4)
+                                                    courseEditing = false;
+                                                else
+                                                    System.out.println("Invalid choice. Please enter a valid option.");
+                                            }
+
+                                        } else if (studentChoice == 4) {
                                             studentEditing = false; // Exit the submenu
                                         }else {
                                             System.out.println("Invalid choice. Please enter a valid option.");
@@ -508,6 +565,7 @@ public class AdviseeTester {
                             else {
                                 System.out.println("Invalid choice. Please enter a valid option.");
                             }
+                            selectedAdvisor.Payment();
                         }
 
                         break;

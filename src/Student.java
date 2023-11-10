@@ -7,7 +7,7 @@ public class Student extends People {
     private double tuitionPerSem;
 
     public Student(String fN, String mN, String lN, String id, Phone pN, Email e, Address a, String major,
-                   double tuitionPerSem, Date admitDate, ArrayList<Course> courseList) {
+                   Date admitDate, ArrayList<Course> courseList) {
         super(fN, mN, lN, id, pN, e, a);
 
         this.major = major;
@@ -71,9 +71,7 @@ public class Student extends People {
     public String display() {
         String courseListString = "";
         for (Course course : getCourseList()) {
-            courseListString += "Course Number: " + course.getCourseNumber() + "\n";
-            courseListString += "Number of Credits: " + course.getNumCredits() + "\n";
-            courseListString += "Price per Credit: $" + course.getPricePerCredit() + "\n\n";
+            courseListString += course.displayCourseInfo() + "\n";
         }
 
         return String.format("Student:\n" +
